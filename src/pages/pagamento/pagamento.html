@@ -1,0 +1,78 @@
+<ion-content padding>
+    <ion-header>
+        <ion-navbar>
+          <ion-title>
+            Pagamento
+          </ion-title>
+        </ion-navbar>
+    </ion-header>
+    <br>
+    <br>
+    <br>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button ion-button color="light" block>Incluir Consumo</button>            
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+                <ion-list>
+                        <ion-item>
+                            <ion-card>
+                                <ion-card-header>
+                                Meu Consumo
+                                </ion-card-header>      
+                                <ion-card-content>
+                                R$230,99
+                                </ion-card-content>      
+                            </ion-card>
+                        </ion-item>
+                        <ion-item>
+                            <ion-card>
+                                <ion-card-header>
+                                Ricardo Mattos
+                                </ion-card-header>      
+                                <ion-card-content>
+                                R$540,99
+                                </ion-card-content>      
+                            </ion-card>
+                        </ion-item>
+                </ion-list>                
+          </ion-col>   
+        </ion-row>
+    </ion-grid>
+
+    
+    <ion-footer padding>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                            <ion-label>Utilizar PYN Coins*</ion-label>
+                            <ion-toggle checked="false"></ion-toggle>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                        <ion-item>
+                            <ion-label>Meio de Pagamento</ion-label>
+                            <ion-select [(ngModel)]="meioPagamento" interface="popover">
+                                <ion-option value="6002">...6002</ion-option>
+                            </ion-select> 
+                        </ion-item>                 
+                </ion-col>
+            </ion-row> 
+            <ion-row>
+                <ion-col>
+                    <p>
+                        <button ion-button block>Pagar</button>
+                    </p>             
+                </ion-col>
+            </ion-row>        
+        </ion-grid>
+
+    </ion-footer>
+
+</ion-content>
