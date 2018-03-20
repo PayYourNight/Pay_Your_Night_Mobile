@@ -1,49 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Comanda</ion-title>
-  </ion-navbar>
-</ion-header>
-<!--<ion-header>
     <ion-navbar>
-        <ion-title>
-            Estabelecimento do Zé das Couves
-        </ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Comanda</ion-title>
     </ion-navbar>
-</ion-header>--> 
+</ion-header>
 
 <ion-content>
-<ion-grid>
-    <ion-row>
-        <ion-col>
-            <ion-list>
-                  <ion-item ion-item *ngFor="let consumo of consumos.produtosConsumo">
-                      <ion-card >
-                          <ion-card-header>
-                            {{consumo.produtos.descricao}}
-                          </ion-card-header>      
-                          <ion-card-content>
-                            <ion-row>
-                              <ion-col align-self-start col-1>
-                                <ion-badge color="secondary">Atendido</ion-badge>
-                              </ion-col>
-                              <ion-col align-self-start col-8>
-                                <p>R$6,99</p>
-                              </ion-col>
-                              <ion-col align-self-end col-3>
-                                <p>0:30 AM</p>
-                              </ion-col>
-                            </ion-row>
-                          </ion-card-content>      
-                      </ion-card>
-                  </ion-item>
-            </ion-list>                
-        </ion-col>   
-    </ion-row>
-</ion-grid>
-</ion-content> 
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item ion-item>
+                        <ion-card *ngFor="let item of produtosConsumo">
+                            <ion-card-header>
+                                {{item.produto.descricao}}
+                            </ion-card-header>
+                            <ion-card-content>
+                                <ion-row>
+                                    <ion-col align-self-start col-1>
+                                        <ion-badge color="secondary">{{item.status}}</ion-badge>
+                                    </ion-col>
+                                    <ion-col align-self-start col-8>
+                                        <p>{{item.valorAplicado}}</p>
+                                    </ion-col>
+                                    <ion-col align-self-end col-3>
+                                        <p>{{item.dataHora}}</p>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
 <ion-footer padding>
     <ion-grid>
         <ion-row>
@@ -51,26 +44,26 @@
                 <ion-item>
                     <p>
                         <button ion-button block large>Finalizar</button>
-                    </p>    
+                    </p>
                 </ion-item>
             </ion-col>
         </ion-row>
-        <ion-row >
+        <ion-row>
             <ion-col align-self-center col-4>
-                    <button ion-button icon-only color="light" large>
-                            <ion-icon name="cart"></ion-icon>
-                    </button>
+                <button ion-button icon-only color="light" large>
+                    <ion-icon name="cart"></ion-icon>
+                </button>
             </ion-col>
             <ion-col align-self-center col-4>
-                    <button ion-button icon-only color="light" large>
-                            <ion-icon name="search"></ion-icon>
-                    </button>
-            </ion-col> 
+                <button ion-button icon-only color="light" large>
+                    <ion-icon name="search"></ion-icon>
+                </button>
+            </ion-col>
             <ion-col align-self: center col-4>
-                    <button ion-button icon-only color="light" large>
-                            <ion-icon name="barcode"></ion-icon>
-                    </button>
-            </ion-col>                                                                          
-        </ion-row>   
+                <button ion-button icon-only color="light" large>
+                    <ion-icon name="barcode"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 </ion-footer>
