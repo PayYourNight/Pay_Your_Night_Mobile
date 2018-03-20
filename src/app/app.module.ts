@@ -10,12 +10,10 @@ import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-// modals
-//import { BasicPage as ModalBasicPage, ModalContentPage } from '../pages/modals/basic/pages';
 
 @NgModule({
   declarations: [
@@ -24,9 +22,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     ComandaPage,
     PagamentoPage,
-      LoginPage,
-      SigninPage,
-      SignupPage
+    LoginPage,
+    SigninPage,
+    SignupPage,
+    TabIconPage,
+    TabIconContentPage,
   ],
   imports: [
     BrowserModule,
@@ -38,11 +38,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     ComandaPage,
-      PagamentoPage,
-      LoginPage,
-      SigninPage,
-      SignupPage
-
+    PagamentoPage,
+    LoginPage,
+    SigninPage,
+    SignupPage,
+    TabIconPage,
+    TabIconContentPage,
   ],
   providers: [
     StatusBar,

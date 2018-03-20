@@ -10,6 +10,7 @@ import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,8 @@ export class MyApp {
       { title: 'Pagamento', component: PagamentoPage },
       { title: 'Login', component: LoginPage },
       { title: 'Signin', component: SigninPage },
-      { title: 'Signup', component: SignupPage }
+      { title: 'Signup', component: SignupPage },
+      { title: 'Abas', component: TabIconPage },
     ];
 
   }
