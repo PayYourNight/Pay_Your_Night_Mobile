@@ -5,12 +5,13 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { ComandaPage } from '../pages/comanda/comanda';
+// import { ComandaPage } from '../pages/comanda/comanda';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
+import { ComandaPage as TabComandaPage, TabComandaContentPage, TabBuscaProdutosContentPage } from '../pages/comanda/comanda';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    ComandaPage,
+    TabComandaPage,
+    TabComandaContentPage,
+    TabBuscaProdutosContentPage,
     PagamentoPage,
     LoginPage,
     SigninPage,
@@ -37,7 +40,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    ComandaPage,
+    TabComandaPage,
+    TabComandaContentPage,
+    TabBuscaProdutosContentPage,
     PagamentoPage,
     LoginPage,
     SigninPage,
