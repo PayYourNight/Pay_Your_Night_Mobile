@@ -10,6 +10,7 @@ import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { BarcodePage } from '../pages/barcode/barcode';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
 import { ComandaPage as TabComandaPage, TabComandaContentPage, TabBuscaProdutosContentPage } from '../pages/comanda/comanda';
 
@@ -28,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SigninPage,
     SignupPage,
+    BarcodePage,
     TabIconPage,
     TabIconContentPage,
   ],
@@ -47,6 +49,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SigninPage,
     SignupPage,
+    BarcodePage,
     TabIconPage,
     TabIconContentPage,
   ],
