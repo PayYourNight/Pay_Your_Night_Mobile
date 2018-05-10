@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Socket } from 'ng-socket-io';
  
 @Component({
   selector: 'page-barcode',
@@ -11,16 +12,27 @@ export class BarcodePage {
   createdCode = null;
   scannedCode = null;
   userId = '28383794-7ab5-41a8-8272-9fc18f8df786';
- 
-  constructor(private barcodeScanner: BarcodeScanner, public viewCtrl: ViewController) { }
+  
+  constructor(
+    private barcodeScanner: BarcodeScanner, 
+    public viewCtrl: ViewController, 
+    private socket: Socket) { 
+
+      this.socket.on('checkin', (data) => {
+        console.log('checkin realizado.');
+        this.criarcheckinMOCK();
+      })
+    this.createCode();
+  }
   
   generateCode() : string {
-    return this.userId;
+    var data = new Date();
+    var dataHora = data.getDate();
+    return this.userId + '|' + dataHora 
   }
 
   createCode() {
-    this.createdCode = this.generateCode();
-    //this.createdCode = this.qrData;
+    this.createdCode = this.generateCode();    
   }
  
   scanCode() {
@@ -32,6 +44,16 @@ export class BarcodePage {
   }
 
   dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  criarcheckinMOCK(){
+    var splitted = this.createdCode.split("|");    
+    window.localStorage.checkin = {
+      userId : splitted[0],
+      dataHora : splitted[1]
+    }
+
     this.viewCtrl.dismiss();
   }
 }

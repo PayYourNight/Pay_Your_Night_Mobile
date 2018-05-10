@@ -85,6 +85,31 @@ export class TabComandaContentPage {
 }
 
 @Component({
+  selector: 'page-qrcode-consumo',
+  templateUrl: 'qrcode_consumo.html'
+})
+export class TabQrcodeConsumoPage {
+  qrData = null;
+  createdCode = null;
+  scannedCode = null;
+  userId = '28383794-7ab5-41a8-8272-9fc18f8df786';
+  estabelecimentoId = '28383794-7ab5-41a8-8272-9fc18f8df786';
+
+  constructor(public navCtrl: NavController) {}
+
+  generateCode() : string {
+    var data = new Date();
+    var dataHora = data.getDate();
+    return this.userId + '|' + dataHora 
+  }
+
+  createCode() {
+    this.createdCode = this.generateCode();    
+  }
+}
+
+
+@Component({
   selector: 'page-busca-produtos',
   templateUrl: 'buscaprodutos.html'
 })
@@ -152,13 +177,13 @@ export class TabBuscaProdutosContentPage {
   <ion-tabs class="tabs-icon">
     <ion-tab tabIcon="cart" [root]="page1"></ion-tab>
     <ion-tab tabIcon="search" [root]="page2"></ion-tab>
-    <ion-tab tabIcon="barcode" [root]="page1"></ion-tab>
+    <ion-tab tabIcon="barcode" [root]="page3"></ion-tab>
   </ion-tabs>
 `})
 export class ComandaPage {
   page1 = TabComandaContentPage;
   page2 = TabBuscaProdutosContentPage;
-  //page3 = 
+  page3 = TabQrcodeConsumoPage;
 
   isAndroid: boolean = false;
 
