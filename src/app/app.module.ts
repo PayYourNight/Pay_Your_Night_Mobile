@@ -6,19 +6,26 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-// import { ComandaPage } from '../pages/comanda/comanda';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+import { HistoricoPage } from '../pages/historico/historico';
+import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
-import { ComandaPage as TabComandaPage, TabComandaContentPage, TabBuscaProdutosContentPage } from '../pages/comanda/comanda';
+import { ComandaPage } from '../pages/comanda/comanda';
+import { TabConsumoContentPage  } from '../pages/comanda/consumo';
+import { TabBuscaProdutosContentPage } from '../pages/comanda/produtos';
+import { TabQrcodeConsumoContentPage } from '../pages/comanda/qrcode';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 
 let config: SocketIoConfig = {
   url: "http://localhost:3000",
@@ -30,9 +37,15 @@ let config: SocketIoConfig = {
     MyApp,
     HomePage,
     ListPage,
-    TabComandaPage,
-    TabComandaContentPage,
+    PerfilPage,
+    MeiosPagamentoPage,
+    PontuacaoPage,
+    HistoricoPage,
+    ConfiguracoesPage,
+    ComandaPage,
+    TabConsumoContentPage,
     TabBuscaProdutosContentPage,
+    TabQrcodeConsumoContentPage,
     PagamentoPage,
     LoginPage,
     SigninPage,
@@ -52,9 +65,15 @@ let config: SocketIoConfig = {
     MyApp,
     HomePage,
     ListPage,
-    TabComandaPage,
-    TabComandaContentPage,
+    PerfilPage,
+    MeiosPagamentoPage,
+    PontuacaoPage,
+    HistoricoPage,
+    ConfiguracoesPage,
+    ComandaPage,
+    TabConsumoContentPage,
     TabBuscaProdutosContentPage,
+    TabQrcodeConsumoContentPage,
     PagamentoPage,
     LoginPage,
     SigninPage,

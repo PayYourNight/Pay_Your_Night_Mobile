@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, Events } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Socket } from 'ng-socket-io';
  
@@ -16,7 +16,8 @@ export class BarcodePage {
   constructor(
     private barcodeScanner: BarcodeScanner, 
     public viewCtrl: ViewController, 
-    private socket: Socket) { 
+    private socket: Socket,
+    public events: Events) { 
 
       this.socket.on('checkin', (data) => {
         console.log('checkin realizado.');
@@ -53,6 +54,11 @@ export class BarcodePage {
       userId : splitted[0],
       dataHora : splitted[1]
     }
+
+    this.events.publish('checkin:started', {
+      userId : splitted[0],
+      dataHora : splitted[1]
+    }, Date.now());
 
     this.viewCtrl.dismiss();
   }

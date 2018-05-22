@@ -1,6 +1,6 @@
 //ionic serve -p 8101 -r 8102 --dev-logger-port 8103
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController} from 'ionic-angular';
+import { ModalController, Platform, NavParams, ViewController, Events } from 'ionic-angular';
 import { BarcodePage } from './../barcode/barcode';
 import { ComandaPage } from './../comanda/comanda';
 import { Socket } from 'ng-socket-io';
@@ -11,15 +11,24 @@ import { Socket } from 'ng-socket-io';
 })
 export class HomePage {
 
-  constructor(public modalCtrl: ModalController, private socket: Socket) {
-      this.socket.on("checkin", (data)=> {
-      console.log(data);
-      this.openModalComanda();
-    });
-    this.socket.on("checkout", (data)=> {
-      console.log(data);
-    });
+  constructor(
+    public modalCtrl: ModalController, 
+    private socket: Socket,
+    public events: Events) {
 
+      this.socket.on("checkin", (data)=> {
+        console.log(data);
+        this.openModalComanda();
+      });
+
+      this.socket.on("checkout", (data)=> {
+        console.log(data);
+      });
+
+      events.subscribe('checkin:started', (user, time) => {
+          console.log(user);
+          this.openModalComanda();
+      });
   }
 
   openModalQR() {

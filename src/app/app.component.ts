@@ -5,6 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
+import { HistoricoPage } from '../pages/historico/historico';
+import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 // import { ComandaPage } from '../pages/comanda/comanda';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
@@ -12,7 +17,10 @@ import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
-import { ComandaPage as TabComandaPage, TabComandaContentPage, TabBuscaProdutosContentPage } from '../pages/comanda/comanda';
+import { ComandaPage } from '../pages/comanda/comanda';
+import { TabConsumoContentPage  } from '../pages/comanda/consumo';
+import { TabBuscaProdutosContentPage } from '../pages/comanda/produtos';
+import { TabQrcodeConsumoContentPage } from '../pages/comanda/qrcode';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,13 +38,18 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Comanda', component: TabComandaPage },
-      { title: 'Pagamento', component: PagamentoPage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Signin', component: SigninPage },
-      { title: 'Signup', component: SignupPage },
-      { title: 'Abas', component: TabIconPage },
+      { title: 'Perfil', component: PerfilPage },
+      { title: 'Meios de Pagamento', component: MeiosPagamentoPage },
+      { title: 'Pontuação', component: PontuacaoPage },
+      { title: 'Historico', component: HistoricoPage },
+      { title: 'Configurações', component: ConfiguracoesPage },
+      //{ title: 'List', component: ListPage },
+      //{ title: 'Comanda', component: TabComandaPage },
+      //{ title: 'Pagamento', component: PagamentoPage },
+      //{ title: 'Login', component: LoginPage },
+      //{ title: 'Signin', component: SigninPage },
+      //{ title: 'Signup', component: SignupPage },
+      //{ title: 'Abas', component: TabIconPage },
     ];
 
   }
