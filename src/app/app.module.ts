@@ -28,7 +28,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 
 let config: SocketIoConfig = {
-  url: "http://localhost:3000",
+  url: "http://localhost:3000/",
   options: {}
 }
 

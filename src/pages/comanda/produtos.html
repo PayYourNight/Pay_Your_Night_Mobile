@@ -1,6 +1,15 @@
-<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-<ion-list>
-    <ion-item *ngFor="let item of produtos">
-        {{ item.descricao }}
-    </ion-item>
-</ion-list>
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Produtos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content padding>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let item of produtos">
+            {{ item.descricao }}
+        </ion-item>
+    </ion-list>
+</ion-content>

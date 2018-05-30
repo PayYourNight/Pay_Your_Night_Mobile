@@ -23,6 +23,7 @@ export class BarcodePage {
         console.log('checkin realizado.');
         this.criarcheckinMOCK();
       })
+      
     this.createCode();
   }
   

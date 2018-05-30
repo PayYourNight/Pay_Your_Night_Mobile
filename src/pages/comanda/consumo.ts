@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { PagamentoPage } from '../pagamento/pagamento'
 
 @Component({
     selector: 'page-consumo',
@@ -13,6 +14,7 @@ import { Platform } from 'ionic-angular';
     constructor(public navCtrl: NavController, public navParams: NavParams) {
   
       this.pedidos = [];
+      
       this.pedidos.push({
         id: 'c82acfba-b4cb-4f73-bb15-9157d02688ba',
         dataHora: '22:00 PM',
@@ -70,6 +72,8 @@ import { Platform } from 'ionic-angular';
           }
         ],
       });
+
+      window.localStorage.pedidos = this.pedidos;
     }
   
     goToProdutoDetail(produto: any){

@@ -1,6 +1,14 @@
 //ionic serve -p 8101 -r 8102 --dev-logger-port 8103
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController, Events } from 'ionic-angular';
+import { 
+  ModalController, 
+  Platform, 
+  NavParams, 
+  ViewController, 
+  Events, 
+  AlertController 
+} from 'ionic-angular';
+
 import { BarcodePage } from './../barcode/barcode';
 import { ComandaPage } from './../comanda/comanda';
 import { Socket } from 'ng-socket-io';
@@ -14,10 +22,12 @@ export class HomePage {
   constructor(
     public modalCtrl: ModalController, 
     private socket: Socket,
-    public events: Events) {
+    public events: Events,
+    public alertCtrl: AlertController) {
 
       this.socket.on("checkin", (data)=> {
         console.log(data);
+        
         this.openModalComanda();
       });
 
@@ -27,13 +37,23 @@ export class HomePage {
 
       events.subscribe('checkin:started', (user, time) => {
           console.log(user);
-          this.openModalComanda();
+          this.showAlert();
+          this.openModalComanda();          
       });
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Check-in',
+      subTitle: 'Você agora faz parte do evento!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   openModalQR() {
     let modal = this.modalCtrl.create(BarcodePage);
-    modal.present();
+    modal.present();    
   }
 
   openModalComanda() {
