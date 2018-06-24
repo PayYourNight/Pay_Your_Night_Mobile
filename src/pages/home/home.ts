@@ -18,6 +18,7 @@ import { Socket } from 'ng-socket-io';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  userId = '28383794-7ab5-41a8-8272-9fc18f8df786';
 
   constructor(
     public modalCtrl: ModalController, 
@@ -27,7 +28,7 @@ export class HomePage {
 
       this.socket.on("checkin", (data)=> {
         console.log(data);
-        
+        this.setLocalStorage(data);
         this.openModalComanda();
       });
 
@@ -35,24 +36,34 @@ export class HomePage {
         console.log(data);
       });
 
-      events.subscribe('checkin:started', (user, time) => {
-          console.log(user);
-          this.showAlert();
-          this.openModalComanda();          
-      });
+    events.subscribe('checkin:started', (user, time) => {
+      console.log(user);
+      //this.showAlert();
+
+      this.openModalComanda();
+    });
   }
 
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Check-in',
-      subTitle: 'Você agora faz parte do evento!',
-      buttons: ['OK']
-    });
-    alert.present();
+  getValue(): string {
+    var data = new Date();
+    return this.userId + '|' + data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();  
   }
+
+  setLocalStorage(data) {
+    localStorage.setItem("estabelecimento", data.estabelecimento);
+  }
+
+  //showAlert() {
+  //  let alert = this.alertCtrl.create({
+  //    title: 'Check-in',
+  //    subTitle: 'Você agora faz parte do evento!',
+  //    buttons: ['OK']
+  //  });
+  //  alert.present();
+  //}
 
   openModalQR() {
-    let modal = this.modalCtrl.create(BarcodePage);
+    let modal = this.modalCtrl.create(BarcodePage, { value : this.getValue() });
     modal.present();    
   }
 
