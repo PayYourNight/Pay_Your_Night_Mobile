@@ -18,6 +18,7 @@ import { Socket } from 'ng-socket-io';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  //TODO
   userId = '28383794-7ab5-41a8-8272-9fc18f8df786';
 
   constructor(
@@ -37,8 +38,7 @@ export class HomePage {
       });
 
     events.subscribe('checkin:started', (user, time) => {
-      console.log(user);
-      //this.showAlert();
+      console.log(user);      
 
       this.openModalComanda();
     });
@@ -52,15 +52,6 @@ export class HomePage {
   setLocalStorage(data) {
     localStorage.setItem("estabelecimento", data.estabelecimento);
   }
-
-  //showAlert() {
-  //  let alert = this.alertCtrl.create({
-  //    title: 'Check-in',
-  //    subTitle: 'Você agora faz parte do evento!',
-  //    buttons: ['OK']
-  //  });
-  //  alert.present();
-  //}
 
   openModalQR() {
     let modal = this.modalCtrl.create(BarcodePage, { value : this.getValue() });

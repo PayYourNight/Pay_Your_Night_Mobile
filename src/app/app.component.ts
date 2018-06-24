@@ -43,13 +43,6 @@ export class MyApp {
       { title: 'Pontuação', component: PontuacaoPage },
       { title: 'Historico', component: HistoricoPage },
       { title: 'Configurações', component: ConfiguracoesPage },
-      //{ title: 'List', component: ListPage },
-      //{ title: 'Comanda', component: TabComandaPage },
-      //{ title: 'Pagamento', component: PagamentoPage },
-      //{ title: 'Login', component: LoginPage },
-      //{ title: 'Signin', component: SigninPage },
-      //{ title: 'Signup', component: SignupPage },
-      //{ title: 'Abas', component: TabIconPage },
     ];
 
   }
