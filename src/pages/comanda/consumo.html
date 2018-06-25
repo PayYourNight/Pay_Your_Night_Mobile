@@ -7,26 +7,28 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
+
     <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>    
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <ion-list #scheduleList>
-        <ion-item-group *ngFor="let pedido of pedidos">
-            <ion-item-divider sticky>
-                <ion-label>
-                    {{pedido.dataHora}}
-                </ion-label>
-            </ion-item-divider>
-            <ion-item-sliding *ngFor="let item of pedido.itensPedido">
-                <button ion-item (click)="goToProdutoDetail(item.produto)">
-                    <h3>{{item.produto.descricao}}</h3>
-                    <p>
-                        {{item.quantidade}} {{item.unidade}} x {{item.preco}}
-                    </p>
-                </button>
-            </ion-item-sliding>
-        </ion-item-group>
+      <ion-item-group *ngFor="let pedido of arrConsumo">
+        <ion-item-divider sticky>
+          <ion-label>
+            {{pedido.created}}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-sliding *ngFor="let item of pedido.itensPedido">
+          <button ion-item (click)="goToProdutoDetail(item.produto)">
+            <h3>{{item.produto.descricao}}</h3>
+            <p>
+              {{item.quantidade}} {{item.unidade}} x {{item.preco}}
+            </p>
+          </button>
+        </ion-item-sliding>
+      </ion-item-group>
     </ion-list>
+  
 </ion-content>
 <ion-footer padding>        
     <button ion-button block (click)="goToPagamento()">Finalizar</button>        

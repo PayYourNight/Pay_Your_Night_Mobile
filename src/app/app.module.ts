@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io'
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -26,6 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
+import { CheckinProvider } from '../provider/checkin';
+import { ConsumoProvider } from '../provider/consumo';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -59,7 +62,8 @@ let config: SocketIoConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     NgxQRCodeModule, 
-    SocketIoModule.forRoot(config) 
+    SocketIoModule.forRoot(config),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -87,7 +91,9 @@ let config: SocketIoConfig = {
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    BarcodeScanner
+    BarcodeScanner,
+    CheckinProvider,
+    ConsumoProvider
   ]
 })
 export class AppModule {}

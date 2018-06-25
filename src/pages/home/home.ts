@@ -12,6 +12,7 @@ import {
 import { BarcodePage } from './../barcode/barcode';
 import { ComandaPage } from './../comanda/comanda';
 import { Socket } from 'ng-socket-io';
+import { CheckinProvider } from '../../provider/checkin';
 
 @Component({
   selector: 'page-home',
@@ -19,23 +20,32 @@ import { Socket } from 'ng-socket-io';
 })
 export class HomePage {
   //TODO
-  userId = '28383794-7ab5-41a8-8272-9fc18f8df786';
+  userId = '5b2ddebc2f2a7b271811b206';
 
   constructor(
     public modalCtrl: ModalController, 
     private socket: Socket,
     public events: Events,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public checkin: CheckinProvider) {
 
-      this.socket.on("checkin", (data)=> {
-        console.log(data);
-        this.setLocalStorage(data);
-        this.openModalComanda();
-      });
+    //TODO trocar usuário id pelo do banco    
+    this.checkin.verificar(this.userId)
+      .subscribe((data) => {
+        if (data) {          
+          this.openModalComanda();
+        }});
 
-      this.socket.on("checkout", (data)=> {
-        console.log(data);
-      });
+    this.socket.on("checkin", (data) => {
+      console.log('checkin realizado no usuário');
+      this.setLocalStorage(data);      
+      this.openModalComanda();
+      this.presentAlert();
+    });
+
+    this.socket.on("checkout", (data) => {
+      console.log(data);
+    });
 
     events.subscribe('checkin:started', (user, time) => {
       console.log(user);      
@@ -61,7 +71,16 @@ export class HomePage {
   openModalComanda() {
     let modal = this.modalCtrl.create(ComandaPage);
     modal.present();
-  }  
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Parabéns',
+      subTitle: 'Agora vc faz parte deste evento lindo!!',
+      buttons: ['Gratidão']
+    });
+    alert.present();
+  }
 }
 
 
