@@ -31,8 +31,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
-
-  pages: Array<{title: string, component: any}>;
+  pages: any;
+  params: any;
+  leftMenuTitle: string;
 
   constructor(
     public platform: Platform,
@@ -42,15 +43,13 @@ export class MyApp {
     private menuService: MenuService) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    //this.pages = [
-    //  { title: 'Home', component: HomePage },
-    //  { title: 'Perfil', component: PerfilPage },
-    //  { title: 'Meios de Pagamento', component: MeiosPagamentoPage },
-    //  { title: 'Pontuação', component: PontuacaoPage },
-    //  { title: 'Historico', component: HistoricoPage },
-    //  { title: 'Configurações', component: ConfiguracoesPage },
-    //];
+    this.pages = menuService.getAllThemes();
+    this.leftMenuTitle = menuService.getTitle();
+
+    this.menuService.load(null).subscribe(snapshot => {
+      this.params = snapshot;
+    });
+
 
   }
 
@@ -61,20 +60,30 @@ export class MyApp {
     });
   }
 
-  //initializeApp() {
-  //  this.platform.ready().then(() => {
-  //    // Okay, so the platform is ready and our plugins are available.
-  //    // Here you can do any higher level native things you might need.
-  //    this.statusBar.styleDefault();
-  //    this.splashScreen.hide();
-  //  });
-  //}
+  // openPage(page) {
+  //   this.nav.setRoot(page.component);
+  // }
 
-  //openPage(page) {
-  //  // Reset the content nav to have just this page
-  //  // we wouldn't want the back button to show in this scenario
-  //  this.nav.setRoot(page.component);
-  //}
+  openPage(page) {
+    if (page.singlePage) {
+      this.menu.open();
+      this.nav.push(page.component);
+    }
+    // close the menu when clicking a link from the menu
+    // navigate to the new page if it is not the current page
+    //if (page.singlePage) {
+    //    this.menu.open();
+    //    this.nav.push(this.getPageForOpen(page.theme), {
+    //      service: this.getServiceForPage(page.theme),
+    //      page: page,
+    //      componentName: page.theme
+    //    });
+    //} else {
+    //  this.nav.setRoot("ItemsPage", {
+    //    componentName: page.theme
+    //  });
+    //}
+  }
 
   getPageForOpen(value: string): any {
     return null;
@@ -82,12 +91,5 @@ export class MyApp {
 
   getServiceForPage(value: string): IService {
     return null;
-  }
-
-  openPage(page) {
-    if (page.singlePage) {
-      this.menu.open();
-      this.nav.push(page.component);
-    }
   }
 }

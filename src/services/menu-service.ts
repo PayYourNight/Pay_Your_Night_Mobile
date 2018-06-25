@@ -31,22 +31,12 @@ export class MenuService implements IService {
       ];
     };
 
-    //this.pages = [
-    //  { title: 'Home', component: HomePage },
-    //  { title: 'Perfil', component: PerfilPage },
-    //  { title: 'Meios de Pagamento', component: MeiosPagamentoPage },
-    //  { title: 'Pontuação', component: PontuacaoPage },
-    //  { title: 'Historico', component: HistoricoPage },
-    //  { title: 'Configurações', component: ConfiguracoesPage },
-    //];
-
     getDataForTheme = () => {
       return {
-        "background": "assets/images/background/14.jpg",
+        "background": "assets/images/background/1.jpg",
         "image": "assets/images/logo/1.png",
-        "title": "Ionic 3 theme iOS 11 style",
-        "description": "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt"
-      };
+        "title": "Pay Your Night",
+        "description": "Por um mundo mais conectado e divertido!"      };
     };
 
     getEventsForTheme = (menuItem: any): any => {
