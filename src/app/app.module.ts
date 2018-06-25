@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io'
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -13,7 +15,6 @@ import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
 import { LoginPage } from '../pages/login/login';
-import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
@@ -29,6 +30,10 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 import { CheckinProvider } from '../provider/checkin';
 import { ConsumoProvider } from '../provider/consumo';
+import { MenuService } from '../services/menu-service';
+import { AppSettings } from '../services/app-settings';
+import { LoadingService } from '../services/loading-service';
+import { LoginProvider } from '../provider/login';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -51,8 +56,7 @@ let config: SocketIoConfig = {
     TabBuscaProdutosContentPage,
     TabQrcodeConsumoContentPage,
     PagamentoPage,
-    LoginPage,
-    SigninPage,
+    LoginPage,    
     SignupPage,
     BarcodePage,
     TabIconPage,
@@ -63,7 +67,9 @@ let config: SocketIoConfig = {
     IonicModule.forRoot(MyApp),
     NgxQRCodeModule, 
     SocketIoModule.forRoot(config),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(AppSettings.FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,8 +86,7 @@ let config: SocketIoConfig = {
     TabBuscaProdutosContentPage,
     TabQrcodeConsumoContentPage,
     PagamentoPage,
-    LoginPage,
-    SigninPage,
+    LoginPage,    
     SignupPage,
     BarcodePage,
     TabIconPage,
@@ -93,7 +98,10 @@ let config: SocketIoConfig = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     BarcodeScanner,
     CheckinProvider,
-    ConsumoProvider
+    ConsumoProvider,
+    MenuService,
+    LoadingService,
+    LoginProvider
   ]
 })
 export class AppModule {}

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-    selector: 'page-signin',
-    templateUrl: 'signin.html'
+    selector: 'page-register',
+    templateUrl: 'register.html'
 })
-export class SigninPage {
+export class RegisterPage {
     selectedItem: any;
     icons: string[];
     items: Array<{ title: string, note: string, icon: string }>;

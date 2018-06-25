@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AppSettings } from './app-settings'
 import { LoadingService } from './loading-service'
+import { HomePage } from '../pages/home/home';
+import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
+import { HistoricoPage } from '../pages/historico/historico';
+import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
+import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 @Injectable()
 export class MenuService implements IService {
@@ -16,27 +22,23 @@ export class MenuService implements IService {
 
     getAllThemes = (): Array<any> => {
       return [
-        {"title" : "List Views", "theme"  : "listViews",  "icon" : "icon-format-align-justify", "listView" : true, "component": "", "singlePage":false},
-        {"title" : "Parallax", "theme"  : "parallax",  "icon" : "icon-format-line-spacing", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Login Pages", "theme"  : "login",  "icon" : "icon-lock-open-outline", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Register Pages", "theme"  : "register",  "icon" : "icon-comment-account", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Image Gallery", "theme"  : "imageGallery",  "icon" : "icon-apps", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Splash Screen", "theme"  : "splashScreens",  "icon" : "icon-logout", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Check Boxs", "theme"  : "checkBoxes",  "icon" : "icon-checkbox-marked", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Search Bars", "theme"  : "searchBars",  "icon" : "icon-magnify", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Typo + small components", "theme"  : "textViews",  "icon" : "icon-tumblr", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Wizard", "theme"  : "wizard",  "icon" : "icon-cellphone-settings", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Spinner", "theme"  : "spinner",  "icon" : "icon-image-filter-tilt-shift", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Tabs", "theme"  : "tabs",  "icon" : "icon-view-array", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Maps", "theme"  : "maps",  "icon" : "icon-google-maps", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "QRCode", "theme"  : "qrcode",  "icon" : "icon-qrcode", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Radio Button", "theme"  : "radioButton",  "icon" : "icon-radiobox-marked", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Range", "theme"  : "range",  "icon" : "icon-toggle-switch-off", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Toggle", "theme"  : "toggle",  "icon" : "icon-toggle-switch", "listView" : false, "component":"", "singlePage":false},
-        {"title" : "Select", "theme"  : "select",  "icon" : "icon-menu-down", "listView" : true, "component":"", "singlePage":false},
-        {"title" : "Action Sheet", "theme"  : "actionSheet",  "icon" : "icon-dots-horizontal", "listView" : false, "component":"", "singlePage":false}
+        { "title": "Home", "theme": "listViews", "icon": "icon-home", "component": HomePage, "singlePage": true },
+        { "title": "Perfil", "theme": "listViews", "icon": "icon-home", "component": PerfilPage, "singlePage": true },
+        { "title": "Meios de Pagamento", "theme": "listViews", "icon": "icon-home", "component": MeiosPagamentoPage, "singlePage": true },
+        { "title": "Pontuação", "theme": "listViews", "icon": "icon-home", "component": PontuacaoPage, "singlePage": true },
+        { "title": "Historico", "theme": "listViews", "icon": "icon-home", "component": HistoricoPage, "singlePage": true },
+        { "title": "Configurações", "theme": "listViews", "icon": "icon-home", "component": ConfiguracoesPage, "singlePage": true }
       ];
     };
+
+    //this.pages = [
+    //  { title: 'Home', component: HomePage },
+    //  { title: 'Perfil', component: PerfilPage },
+    //  { title: 'Meios de Pagamento', component: MeiosPagamentoPage },
+    //  { title: 'Pontuação', component: PontuacaoPage },
+    //  { title: 'Historico', component: HistoricoPage },
+    //  { title: 'Configurações', component: ConfiguracoesPage },
+    //];
 
     getDataForTheme = () => {
       return {

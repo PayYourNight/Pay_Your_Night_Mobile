@@ -1,55 +1,137 @@
-import { Component } from '@angular/core';
-//import { Facebook } from '@ionic-native/facebook';
-//import { NativeStorage } from '@ionic-native/native-storage';
-import { NavController } from 'ionic-angular';
-//import { UserPage } from '../user/user';
+import { Component, Input } from '@angular/core';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { HomePage } from '../home/home';
+import { LoginProvider } from '../../provider/login';
 
+//@IonicPage()
 @Component({
-    selector: 'page-login',
-    templateUrl: 'login.html',
+  selector: 'page-login',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
-    FB_APP_ID: number = 725261520963213;
 
-    constructor(
-        public navCtrl: NavController//,
-        //public fb: Facebook,
-        //public nativeStorage: NativeStorage
-    ) {
-        //this.fb.browserInit(this.FB_APP_ID, "v2.8");
+  //@Input() data: any;
+  //@Input() events: any;
+
+  public data: any;
+  public username: string;
+  public password: string;
+  public paircode: string;
+
+  private isUsernameValid: boolean = true;
+  private isPasswordValid: boolean = true;
+
+  constructor(
+    public navCtrl: NavController,
+    public login: LoginProvider,
+    private toastCtrl: ToastController) {
+
+    if (localStorage.getItem("user")) {
+      this.navCtrl.setRoot(HomePage);
     }
 
-    //doFbLogin() {
-    //    let permissions = new Array<string>();
-    //    let nav = this.navCtrl;
+    this.data = {
+      "username": "Digite seu nome de usuário",
+      "password": "Digite sua senha",
+      "paircode": "Digite o código de pareamento",
+      "labelUsername": "USERNAME",
+      "labelPassword": "PASSWORD",
+      "labelPair": "PAIR CODE",
+      "register": "Registre-se!",
+      "forgotPassword": "Esqueceu a senha?",
+      "login": "Login",
+      "subtitle": "Bem-vindo",
+      "title": "Conecte-se",
+      "skip": "",
+      "logo": "assets/images/logo/2.png",
+      "errorUser": "Campo não pode ser nulo.",
+      "errorPassword": "Campo não pode ser nulo.",
+      "errorPair": "Campo não pode ser nulo."
+    };
 
-    //    //the permissions your facebook app needs from the user
-    //    permissions = ["public_profile"];
+  }
 
-    //    this.fb.login(permissions)
-    //        .then((response) => {
-    //            let userId = response.authResponse.userID;
-    //            let params = new Array<string>();
+  onLogin() {
+    if (this.validate()) {
+      this.login.signin(this.username, this.password)
+        .subscribe((data) => {
+          console.log(data);
+          this.setStorage(data);
+          // this.setHeader(data);
+          this.setPages();
+        }, error => {
+          console.log(error.error.message);
+          if (error.error.message == "User not found" || error.error.message == "Wrong Password") {
+            this.presentToast("Login ou senha inválidos.");
+          } else {
+            this.presentToast("Desculpe, alguma coisa saiu errada :(")
+          }
+        });
 
-    //            //Getting name and gender properties
-    //            this.fb.api("/me?fields=name,gender", params)
-    //                .then((user) => {
-    //                    user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-    //                    //now we have the users info, let's save it in the NativeStorage
-    //                    this.nativeStorage.setItem('user',
-    //                        {
-    //                            name: user.name,
-    //                            gender: user.gender,
-    //                            picture: user.picture
-    //                        })
-    //                        .then(() => {
-    //                            nav.push(UserPage);
-    //                        }, (error) => {
-    //                            console.log(error);
-    //                        })
-    //                })
-    //        }, (error) => {
-    //            console.log(error);
-    //        });
-    //}
+    }
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 10000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  setPages(): any {
+    //this.navCtrl.pop();
+    this.navCtrl.setRoot(HomePage);
+    //this.navCtrl.popToRoot();
+  }
+
+  setStorage(data: any): any {
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', JSON.stringify(data.token));
+  }
+
+  onForgot() {
+
+  }
+
+  onRegister() {
+
+  }
+
+  onSkip() {
+
+  }
+
+  onFacebook() {
+
+  }
+
+  onTwitter() {
+
+  }
+
+  onGoogle() {
+
+  }
+
+  onPinterest() {
+
+  }
+
+  validate(): boolean {
+    this.isUsernameValid = true;
+    this.isPasswordValid = true;
+
+    if (!this.username || this.username.length == 0) {
+      this.isUsernameValid = false;
+    }
+
+    if (!this.password || this.password.length == 0) {
+      this.isPasswordValid = false;
+    }
+
+    return this.isPasswordValid && this.isUsernameValid;
+  }
 }
