@@ -14,6 +14,8 @@ export class LoginProvider {
       'password': password
     };
 
+    console.log(credentials);
+
     return this.http
       //.post('http://10.0.2.2:3000/api/auth/authenticate', credentials);
       .post('http://localhost:3000/api/auth/authenticate', credentials);

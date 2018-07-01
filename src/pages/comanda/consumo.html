@@ -1,14 +1,16 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Comanda</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Comanda</ion-title>
+  </ion-navbar>
+  <ion-card padding text-center>
+    <h1>{{estabelecimento_nome}}</h1>
+  </ion-card>
 </ion-header>
 
 <ion-content>  
  
-  <ion-card padding text-center>
-      {{estabelecimento_nome}}
-  </ion-card>
+
+  <br />
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->
@@ -19,21 +21,21 @@
           {{pedido.created | date:'HH:mm'}}
         </ion-label>
       </ion-item-divider>
-      <ion-item-sliding *ngFor="let item of pedido.produtosConsumo">
-        <button ion-item (click)="goToProdutoDetail(item)">
-          <h3>{{item.produto_descricao}}</h3>
+      <ion-item *ngFor="let item of pedido.produtosConsumo" detail-push>
+        <button ion-item (click)="goToProdutoDetail(item)" detail-push>
+          <h1>{{item.produto_descricao}}</h1>
           <p>
-            {{item.quantidade}} {{item.unidade}} x {{item.produto_valor | number:'1.1-5'}}
+            <ion-badge color="light">{{item.quantidade}} {{item.unidade}} x {{item.produto_valor | number:'1.1-5'}}</ion-badge>
           </p>
         </button>
-      </ion-item-sliding>
+      </ion-item>
     </ion-item-group>
   </ion-list>
 
 </ion-content>
 <ion-footer padding>  
-  <ion-card padding text-center>
-    TOTAL: {{ total | number:'1.1-5' }}
+  <ion-card [hidden]="total === 0" padding text-center>
+    <h2>TOTAL: R$ {{ total | number:'1.1-5' }}</h2>
   </ion-card>  
   <button ion-button block (click)="goToPagamento()">Finalizar</button>  
 </ion-footer>

@@ -34,6 +34,8 @@ import { MenuService } from '../services/menu-service';
 import { AppSettings } from '../services/app-settings';
 import { LoadingService } from '../services/loading-service';
 import { LoginProvider } from '../provider/login';
+import { MyErrorHandler } from '../handler/errorhandler';
+
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -95,7 +97,7 @@ let config: SocketIoConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: MyErrorHandler },
     BarcodeScanner,
     CheckinProvider,
     ConsumoProvider,

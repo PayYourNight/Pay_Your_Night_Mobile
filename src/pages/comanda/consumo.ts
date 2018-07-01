@@ -51,14 +51,14 @@ export class TabConsumoContentPage {
   }
 
   buscarConsumo(): any {
-    this.loading.present();
+    //this.loading.present();
     this.consumo.getConsumo(this.usuario_id)
       .subscribe((data) => {
         console.log(data);
         this.arrConsumo = data;
         this.total = this.getTotal();
       });
-    this.loading.dismiss();
+    //this.loading.dismiss();
   }
 
   goToProdutoDetail(produto: any) {
