@@ -1,9 +1,10 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Comanda</ion-title>
+    <div class="saldo">PYNs {{ saldoPontuacao }}</div>
   </ion-navbar>
   <ion-card padding text-center>
-    <h1>{{estabelecimento_nome}}</h1>
+    <h1>{{ estabelecimento_nome }}</h1>
   </ion-card>
 </ion-header>
 
@@ -18,14 +19,14 @@
     <ion-item-group *ngFor="let pedido of arrConsumo">
       <ion-item-divider sticky>
         <ion-label>
-          {{pedido.created | date:'HH:mm'}}
+          {{ pedido.created | date:'HH:mm' }}
         </ion-label>
       </ion-item-divider>
       <ion-item *ngFor="let item of pedido.produtosConsumo" detail-push>
         <button ion-item (click)="goToProdutoDetail(item)" detail-push>
-          <h1>{{item.produto_descricao}}</h1>
+          <h1>{{ item.produto_descricao }}</h1>
           <p>
-            <ion-badge color="light">{{item.quantidade}} {{item.unidade}} x {{item.produto_valor | number:'1.1-5'}}</ion-badge>
+            <ion-badge color="light">{{ item.quantidade }} {{ item.unidade }} x {{ item.produto_valor | number:'1.1-5' }}</ion-badge>
           </p>
         </button>
       </ion-item>

@@ -35,6 +35,7 @@ import { AppSettings } from '../services/app-settings';
 import { LoadingService } from '../services/loading-service';
 import { LoginProvider } from '../provider/login';
 import { MyErrorHandler } from '../handler/errorhandler';
+import { SaldoService } from '../services/saldo-service';
 
 
 let config: SocketIoConfig = {
@@ -103,7 +104,8 @@ let config: SocketIoConfig = {
     ConsumoProvider,
     MenuService,
     LoadingService,
-    LoginProvider
+    LoginProvider,
+    SaldoService
   ]
 })
 export class AppModule {}
