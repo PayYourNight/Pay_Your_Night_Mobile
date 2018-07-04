@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+//import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
@@ -51,8 +51,7 @@ let config: SocketIoConfig = {
     MyApp,
     HomePage,
     ListPage,
-    PerfilPage,
-    MeiosPagamentoPage,
+    PerfilPage,    
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,
@@ -82,7 +81,7 @@ let config: SocketIoConfig = {
     HomePage,
     ListPage,
     PerfilPage,
-    MeiosPagamentoPage,
+    //MeiosPagamentoPage,
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,
