@@ -1,6 +1,6 @@
 {
   "name": "pyn_user",
-  "app_id": "",
+  "app_id": "acae5227",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
