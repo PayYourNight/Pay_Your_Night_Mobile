@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { PerfilPage } from '../pages/perfil/perfil';
-//import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+import { MeiosPagamentoPage } from '../pages/meiospagamento/meiosPagamento';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
@@ -41,7 +41,7 @@ import { GlobalsProvider } from '../provider/globals';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
-//  url: "http://localhost:3000/",
+  //url: "http://localhost:3000/",
   url: "https://intense-journey-43070.herokuapp.com",
   options: {}
 }
@@ -51,7 +51,8 @@ let config: SocketIoConfig = {
     MyApp,
     HomePage,
     ListPage,
-    PerfilPage,    
+    PerfilPage,
+    MeiosPagamentoPage,
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,
@@ -81,7 +82,7 @@ let config: SocketIoConfig = {
     HomePage,
     ListPage,
     PerfilPage,
-    //MeiosPagamentoPage,
+    MeiosPagamentoPage,
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,

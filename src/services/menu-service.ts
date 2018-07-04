@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { HistoricoPage } from '../pages/historico/historico';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
-import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
+//import { MeiosPagamentoPage } from '../pages/meiosPagamento/meiosPagamento';
 import { PerfilPage } from '../pages/perfil/perfil';
 
 @Injectable()
