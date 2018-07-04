@@ -34,10 +34,15 @@ import { MenuService } from '../services/menu-service';
 import { AppSettings } from '../services/app-settings';
 import { LoadingService } from '../services/loading-service';
 import { LoginProvider } from '../provider/login';
+import { MyErrorHandler } from '../handler/errorhandler';
+import { SaldoService } from '../services/saldo-service';
+import { MeioPagamentoProvider } from '../provider/meiopagamento';
+import { GlobalsProvider } from '../provider/globals';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
-  url: "http://localhost:3000/",
+//  url: "http://localhost:3000/",
+  url: "https://intense-journey-43070.herokuapp.com",
   options: {}
 }
 
@@ -95,13 +100,16 @@ let config: SocketIoConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: MyErrorHandler },
     BarcodeScanner,
     CheckinProvider,
     ConsumoProvider,
     MenuService,
     LoadingService,
-    LoginProvider
+    LoginProvider,
+    SaldoService,
+    MeioPagamentoProvider,
+    GlobalsProvider
   ]
 })
 export class AppModule {}

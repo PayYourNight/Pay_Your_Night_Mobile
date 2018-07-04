@@ -3,13 +3,28 @@
         <ion-title>
             Pagamento
         </ion-title>
+        <div class="saldo">PYNs {{ saldoPontuacao }}</div>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
 
-    <button ion-button color="light" block>Incluir Consumo</button>            
-    <!--<ion-list>
-      <ion-card>
+  <button ion-button color="light" block>Incluir Consumo</button>
+
+  <ion-row *ngFor="let item of consumos" ion-list>
+    <ion-card>
+      <ion-card-content>
+        <ion-card-header>
+          <h1>{{item.usuario}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-badge>R$ {{item.total | number:'1.2-5'}}</ion-badge> 
+        </ion-card-content>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+
+  <!--<ion-list>-->
+  <!--<ion-card>
       <ion-card-header>
       Meu Consumo
     </ion-card-header>
@@ -17,23 +32,26 @@
       {{total | number:'1.2-5'}}
     </ion-card-content>
   </ion-card>-->
-      <!--<ion-item *ngFor="let consumo in consumos" text-wrap>
-        <ion-card>
-          <ion-card-header>
-            {{ consumo.usuario }}
-          </ion-card-header>
-          <ion-card-content>
-            {{ consumo.total | number:'1.2-5' }}
-          </ion-card-content>
-        </ion-card>
-      </ion-item>
-    </ion-list>-->
+  <!--<ion-item *ngFor="let consumo in consumos" text-wrap>
+      <ion-card>
+        <ion-card-header>
+          {{ consumo.usuario }}
+        </ion-card-header>
+        <ion-card-content>
+          {{ consumo.total | number:'1.2-5' }}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>-->
 
 </ion-content>    
-<ion-footer padding>
+<ion-footer>
+   <ion-item *ngIf="pagarPYNCoin">
+     <h3><ion-badge>{{totalPagar}}</ion-badge> - <ion-badge>{{totalPontos}}</ion-badge> = Total à Pagar <ion-badge>{{totalPagar - totalPontos}}</ion-badge></h3>
+   </ion-item>
     <ion-item>
         <ion-label>Utilizar PYN Coins*</ion-label>
-        <ion-toggle checked="false"></ion-toggle>
+        <ion-toggle checked="false" [(ngModel)]="pagarPYNCoin"></ion-toggle>
     </ion-item>
     <ion-item>
         <ion-label>Meio de Pagamento</ion-label>

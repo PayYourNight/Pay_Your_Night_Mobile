@@ -6,6 +6,8 @@ import { Socket } from 'ng-socket-io';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { ConsumoProvider } from '../../provider/consumo';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { SaldoService } from '../../services/saldo-service';
+
 
 
 @Component({
@@ -18,6 +20,7 @@ export class TabConsumoContentPage {
   private loading: any;
   public arrConsumo: any = null;
   total: string;
+  saldoPontuacao: number;
   //TODO
   estabelecimento_nome: string = "Bar do Zé das Couves";
 
@@ -27,8 +30,11 @@ export class TabConsumoContentPage {
     public alertCtrl: AlertController,
     public socket: Socket,
     public consumo: ConsumoProvider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public saldoService: SaldoService
   ) {
+
+    this.saldoPontuacao = this.saldoService.getSaldo();
 
     this.loading = this.loadingCtrl.create({ spinner: 'dots' });
 
@@ -51,14 +57,15 @@ export class TabConsumoContentPage {
   }
 
   buscarConsumo(): any {
-    this.loading.present();
     this.consumo.getConsumo(this.usuario_id)
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(
+      (data) => {
         this.arrConsumo = data;
         this.total = this.getTotal();
+      },
+      (error) => {
+        console.log(error);
       });
-    this.loading.dismiss();
   }
 
   goToProdutoDetail(produto: any) {

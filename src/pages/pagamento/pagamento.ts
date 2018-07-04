@@ -9,11 +9,15 @@ export class PagamentoPage {
 
   total: any = 0;
   consumos: any = [];
+  pagarPYNCoin: boolean;
+  totalPagar: number;
+  totalPontos: number;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams) {
-
+    this.totalPagar = 0;
+    this.totalPontos = 0;
     this.total = navParams.get("total");
 
     this.consumos.push({
