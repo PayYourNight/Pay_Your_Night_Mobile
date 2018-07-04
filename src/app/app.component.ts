@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { MeiosPagamentoPage } from '../pages/meiospagamento/meiosPagamento';
+//import { MeiosPagamentoPage } from '../pages/meiospagamento/meiosPagamento';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
