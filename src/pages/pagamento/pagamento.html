@@ -8,7 +8,8 @@
 </ion-header>
 <ion-content padding>
 
-  <button ion-button color="light" block>Incluir Consumo</button>
+  <button ion-button color="secondary" block>Incluir Consumo</button>
+  <button ion-button color="primary" block>Incluir Consumo Mock</button>
 
   <ion-row *ngFor="let item of consumos" ion-list>
     <ion-card>
@@ -17,7 +18,7 @@
           <h1>{{item.usuario}}</h1>
         </ion-card-header>
         <ion-card-content>
-          <ion-badge>R$ {{item.total | number:'1.2-5'}}</ion-badge> 
+          <ion-badge>R$ {{item.total | number:'1.2-5'}}</ion-badge>
         </ion-card-content>
       </ion-card-content>
     </ion-card>

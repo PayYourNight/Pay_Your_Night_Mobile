@@ -10,7 +10,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { PerfilPage } from '../pages/perfil/perfil';
-//import { MeiosPagamentoPage } from '../pages/meiospagamento/meiosPagamento';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { PagamentoPage } from '../pages/pagamento/pagamento';
@@ -38,6 +37,7 @@ import { MyErrorHandler } from '../handler/errorhandler';
 import { SaldoService } from '../services/saldo-service';
 import { MeioPagamentoProvider } from '../provider/meiopagamento';
 import { GlobalsProvider } from '../provider/globals';
+import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -52,7 +52,7 @@ let config: SocketIoConfig = {
     HomePage,
     ListPage,
     PerfilPage,
-    //MeiosPagamentoPage,
+    MeiosPagamentoPage,
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,
@@ -82,7 +82,7 @@ let config: SocketIoConfig = {
     HomePage,
     ListPage,
     PerfilPage,
-    //MeiosPagamentoPage,
+    MeiosPagamentoPage,
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,

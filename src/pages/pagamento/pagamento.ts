@@ -26,4 +26,14 @@ export class PagamentoPage {
     });
 
   }
+
+  incluirConsumoMock() {
+
+  }
+
+  abrirLeitorIncluirConsumo() {
+
+  }
+
+
 }

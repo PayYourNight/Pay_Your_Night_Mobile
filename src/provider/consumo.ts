@@ -27,6 +27,5 @@ export class ConsumoProvider {
     };
 
     return this.http.get(this.globals.baseUrl + "/api/consumo/?usuarioid=" + usuario_id, httpOptions);
-
   }
 }

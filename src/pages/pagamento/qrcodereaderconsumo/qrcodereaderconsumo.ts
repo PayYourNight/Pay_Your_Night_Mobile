@@ -6,7 +6,7 @@ import { Socket } from 'ng-socket-io';
 
 @Component({
   selector: 'page-qrcode-checkin',
-  templateUrl: 'qrcode-checkin.html'
+  templateUrl: 'qrcodeconsumo.html'
 })
 export class QrcodeCheckinPage {
   constructor(
