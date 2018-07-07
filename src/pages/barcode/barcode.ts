@@ -18,10 +18,8 @@ export class BarcodePage {
     public params: NavParams) { 
 
     var value = params.get('value');
-    console.log(value);
     this.createdCode = value;
-      this.socket.on('checkin', (data) => {
-        console.log('checkin realizado. popup de qrcode fechado');
+      this.socket.on('checkin', (data) => {        
         this.viewCtrl.dismiss();
       })
   }
