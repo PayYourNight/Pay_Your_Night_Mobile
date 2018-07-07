@@ -5,6 +5,7 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io'
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import * as Sentry from 'sentry-cordova';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -45,6 +46,8 @@ let config: SocketIoConfig = {
   url: "https://intense-journey-43070.herokuapp.com",
   options: {}
 }
+
+Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' });
 
 @NgModule({
   declarations: [
