@@ -33,7 +33,7 @@ export class TabConsumoContentPage {
     public saldoService: SaldoService
   ) {
 
-    this.usuario = localStorage.get("user");
+    this.usuario = JSON.parse(localStorage.get("user"));
 
     this.saldoPontuacao = this.saldoService.getSaldo();
 

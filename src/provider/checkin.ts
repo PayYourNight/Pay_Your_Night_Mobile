@@ -29,6 +29,5 @@ export class CheckinProvider {
     };
 
     return this.http.get(this.globals.baseUrl + this.apiUrl + "/?usuarioid=" + this.user._id, httpOptions);
-
   }
 }

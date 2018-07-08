@@ -32,23 +32,16 @@ export class HomePage {
     private checkin: CheckinProvider,
     private navCtrl: NavController) {
 
-    this.usuario = localStorage.getItem("user");
-    
-    this.checkin.verificar(this.usuario._id)
-      .subscribe((data) => {
-        this.resCheckin = data;
-        if (data) {
-          if (this.resCheckin.consumo_transferido) {
-            this.navCtrl.setRoot(AguardandoPagamentoPage);
-          } else {
-            this.openModalComanda();
-          }
-        }});
+    var u: any = localStorage.getItem("user");
+
+    this.usuario = JSON.parse(u);
+        
+    this.verificarCheckin();
 
     this.socket.on("checkin", (data) => {
       console.log('checkin realizado no usuário');
       this.setLocalStorage(data);      
-      this.openModalComanda();
+      this.openComanda();
       this.presentAlert();
     });
 
@@ -56,11 +49,26 @@ export class HomePage {
       console.log(data);
     });
 
-    events.subscribe('checkin:started', (user, time) => {
-      console.log(user);      
-
-      this.openModalComanda();
+    events.subscribe('checkin:started', (user, time) => {     
+      this.openComanda();
     });
+  }
+
+  verificarCheckin() {
+    this.checkin.verificar()
+      .subscribe((data) => {
+        this.resCheckin = data;
+        if (data) {
+          if (this.resCheckin.consumo_transferido) {
+            this.navCtrl.setRoot(AguardandoPagamentoPage);
+          } else {
+            this.openComanda();
+          }
+        }
+      },
+      (error) => {
+        throw new Error(error);
+      });
   }
 
   getValue(): string {
@@ -76,9 +84,8 @@ export class HomePage {
     this.navCtrl.push(BarcodePage, { value: this.getValue() });
   }
 
-  openModalComanda() {
-    let modal = this.modalCtrl.create(ComandaPage);
-    modal.present();
+  openComanda() {
+    this.navCtrl.setRoot(ComandaPage);
   }
 
   presentAlert() {
