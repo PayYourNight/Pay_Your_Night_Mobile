@@ -10,19 +10,35 @@
 
   <button ion-button color="secondary" (click)="scanCode()" block>Incluir Consumo</button>
   <button ion-button color="primary" block>Incluir Consumo Mock</button>
+  <ion-list>
+    <ion-item *ngFor="let item of consumos">
+      <ion-label>
+        <h1>{{ item.usuario }}</h1>
+      </ion-label>
+      <ion-badge>R$ {{ item.total | number:'1.2-5' }}</ion-badge>
+      <button ion-button outline item-end (click)="removerConsumo()">
+        <ion-icon name="remove"></ion-icon>
+        Remover
+      </button>
+    </ion-item>
+  </ion-list>
 
-  <ion-row *ngFor="let item of consumos" ion-list>
+  <!--<ion-row *ngFor="let item of consumos" ion-list>
     <ion-card>
       <ion-card-content>
         <ion-card-header>
           <h1>{{item.usuario}}</h1>
         </ion-card-header>
         <ion-card-content>
-          <ion-badge>R$ {{item.total | number:'1.2-5'}}</ion-badge>
+          <ion-list>
+            <ion-item>
+              <ion-badge>R$ {{ item.total | number:'1.2-5' }}</ion-badge>
+            </ion-item>
+          </ion-list>
         </ion-card-content>
       </ion-card-content>
     </ion-card>
-  </ion-row>
+  </ion-row>-->
 </ion-content>    
 <ion-footer>
    <ion-item *ngIf="pagarPYNCoin">
