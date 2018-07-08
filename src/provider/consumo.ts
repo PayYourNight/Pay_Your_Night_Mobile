@@ -7,25 +7,33 @@ import { GlobalsProvider } from './globals';
 
 @Injectable()
 export class ConsumoProvider {
-  private user: any;
-  private token: String;
+  user: any;
+  token: String;
+  httpOptions: any;
 
   constructor(public http: HttpClient, private globals: GlobalsProvider) {
     console.log('Hello CheckinProvider Provider');
     this.user = JSON.parse(localStorage.getItem("user"));
     this.token = JSON.parse(localStorage.getItem("token"));
-  }
-
-  //TODO
-  getConsumo(usuario_id: string) {
-    console.log('realizando busca de consumo');
-    const httpOptions = {
+    this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': JSON.stringify(this.token || {})
       })
     };
-
-    return this.http.get(this.globals.baseUrl + "/api/consumo/?usuarioid=" + usuario_id, httpOptions);
   }
+
+  //TODO
+  getConsumo(usuario_id: string) {
+    console.log('realizando busca de consumo');
+
+    return this.http.get(this.globals.baseUrl + "/api/consumo/?usuarioid=" + usuario_id, this.httpOptions);
+  }
+
+  incluirConsumo() {
+    var body = JSON.stringify({});
+
+    return this.http.post(this.globals.baseUrl + "/api/consumo/incluirconsumo", body, this.httpOptions);
+  }
+
 }

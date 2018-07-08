@@ -15,10 +15,9 @@ import { SaldoService } from '../../services/saldo-service';
   templateUrl: 'consumo.html'
 })
 export class TabConsumoContentPage {
-
-  private usuario_id: string = "5b2ddebc2f2a7b271811b206";
-  private loading: any;
-  public arrConsumo: any = null;
+  usuario: any;  
+  loading: any;
+  arrConsumo: any = null;
   total: string;
   saldoPontuacao: number;
   //TODO
@@ -33,6 +32,8 @@ export class TabConsumoContentPage {
     public loadingCtrl: LoadingController,
     public saldoService: SaldoService
   ) {
+
+    this.usuario = localStorage.get("user");
 
     this.saldoPontuacao = this.saldoService.getSaldo();
 
@@ -57,7 +58,7 @@ export class TabConsumoContentPage {
   }
 
   buscarConsumo(): any {
-    this.consumo.getConsumo(this.usuario_id)
+    this.consumo.getConsumo(this.usuario._id)
       .subscribe(
       (data) => {
         this.arrConsumo = data;

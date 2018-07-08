@@ -13,27 +13,36 @@ import { BarcodePage } from './../barcode/barcode';
 import { ComandaPage } from './../comanda/comanda';
 import { Socket } from 'ng-socket-io';
 import { CheckinProvider } from '../../provider/checkin';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { AguardandoPagamentoPage } from '../aguardando-pagamento/aguardando-pagamento';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  //TODO
-  userId = '5b2ddebc2f2a7b271811b206';
+  resCheckin: any;
+  usuario: any;
 
   constructor(
-    public modalCtrl: ModalController, 
+    private modalCtrl: ModalController, 
     private socket: Socket,
-    public events: Events,
-    public alertCtrl: AlertController,
-    public checkin: CheckinProvider) {
+    private events: Events,
+    private alertCtrl: AlertController,
+    private checkin: CheckinProvider,
+    private navCtrl: NavController) {
 
-    //TODO trocar usuário id pelo do banco    
-    this.checkin.verificar(this.userId)
+    this.usuario = localStorage.getItem("user");
+    
+    this.checkin.verificar(this.usuario._id)
       .subscribe((data) => {
-        if (data) {          
-          this.openModalComanda();
+        this.resCheckin = data;
+        if (data) {
+          if (this.resCheckin.consumo_transferido) {
+            this.navCtrl.setRoot(AguardandoPagamentoPage);
+          } else {
+            this.openModalComanda();
+          }
         }});
 
     this.socket.on("checkin", (data) => {
@@ -56,7 +65,7 @@ export class HomePage {
 
   getValue(): string {
     var data = new Date();
-    return this.userId + '|' + data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();  
+    return this.usuario._id + '|' + data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();  
   }
 
   setLocalStorage(data) {
@@ -64,8 +73,7 @@ export class HomePage {
   }
 
   openModalQR() {
-    let modal = this.modalCtrl.create(BarcodePage, { value : this.getValue() });
-    modal.present();    
+    this.navCtrl.push(BarcodePage, { value: this.getValue() });
   }
 
   openModalComanda() {

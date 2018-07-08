@@ -13,11 +13,7 @@ export class QrcodeCheckinPage {
     private barcodeScanner: BarcodeScanner,
     public viewCtrl: ViewController,
     private socket: Socket
-  ) {
-
-    //let user = localStorage.getItem('user');
-    this.scanCode();
-  }
+  ) { }
 
   scanCode() {
     this.barcodeScanner.scan().then((data) => {

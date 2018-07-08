@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, Events, NavParams  } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Socket } from 'ng-socket-io';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
  
 @Component({
   selector: 'page-barcode',
@@ -12,34 +13,17 @@ export class BarcodePage {
   
   constructor(
     private barcodeScanner: BarcodeScanner, 
-    public viewCtrl: ViewController, 
+    private viewCtrl: ViewController, 
     private socket: Socket,
-    public events: Events,
-    public params: NavParams) { 
+    private events: Events,
+    private params: NavParams,
+    private navCtrl: NavController
+  ) { 
 
     var value = params.get('value');
     this.createdCode = value;
-      this.socket.on('checkin', (data) => {        
-        this.viewCtrl.dismiss();
+    this.socket.on('checkin', (data) => {
+      this.navCtrl.pop();
       })
   }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
-  }
-
-  //criarcheckinMOCK(){
-  //  var splitted = this.createdCode.split("|");    
-  //  window.localStorage.checkin = {
-  //    userId : splitted[0],
-  //    dataHora : splitted[1]
-  //  }
-
-  //  this.events.publish('checkin:started', {
-  //    userId : splitted[0],
-  //    dataHora : splitted[1]
-  //  }, Date.now());
-
-  //  this.viewCtrl.dismiss();
-  //}
 }
