@@ -38,7 +38,6 @@ import { MyErrorHandler } from '../handler/errorhandler';
 import { SaldoService } from '../services/saldo-service';
 import { MeioPagamentoProvider } from '../provider/meiopagamento';
 import { GlobalsProvider } from '../provider/globals';
-import { MeiosPagamentoPage } from '../pages/meiospagamento/meiospagamento';
 import { PagamentoProvider } from '../provider/pagamento';
 
 let config: SocketIoConfig = {
@@ -55,8 +54,7 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     MyApp,
     HomePage,
     ListPage,
-    PerfilPage,
-    MeiosPagamentoPage,
+    PerfilPage,    
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,
@@ -85,8 +83,7 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     MyApp,
     HomePage,
     ListPage,
-    PerfilPage,
-    MeiosPagamentoPage,
+    PerfilPage,    
     PontuacaoPage,
     HistoricoPage,
     ConfiguracoesPage,

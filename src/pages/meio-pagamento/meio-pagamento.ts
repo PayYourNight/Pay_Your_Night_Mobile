@@ -5,7 +5,7 @@ import { MeioPagamentoProvider } from '../../provider/meiopagamento';
   selector: 'page-meios-pagamento',
   templateUrl: 'meiosPagamento.html'
 })
-export class MeiosPagamentoPage {
+export class MeioPagamentoPage {
   meiospagamento: any;
   constructor(private meiopagamento: MeioPagamentoProvider) {
 
@@ -14,7 +14,7 @@ export class MeiosPagamentoPage {
 
         this.meiospagamento = data;
 
-    });
+      });
   }
 
 }
