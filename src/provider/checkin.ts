@@ -19,7 +19,7 @@ export class CheckinProvider {
   }
 
   //TODO
-  verificar(usuario_id: string) {
+  verificar() {
     console.log('realizando verificação de checkin');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -28,7 +28,7 @@ export class CheckinProvider {
       })
     };
 
-    return this.http.get(this.globals.baseUrl + this.apiUrl + "/?usuarioid=" + usuario_id, httpOptions);
+    return this.http.get(this.globals.baseUrl + this.apiUrl + "/?usuarioid=" + this.user._id, httpOptions);
 
   }
 }
