@@ -17,7 +17,7 @@ export class TabQrcodeConsumoContentPage {
     public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner) {
 
-    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.createCode();
 
   }
