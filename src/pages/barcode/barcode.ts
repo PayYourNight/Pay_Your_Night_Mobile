@@ -22,8 +22,8 @@ export class BarcodePage {
 
     var value = params.get('value');
     this.createdCode = value;
-    this.socket.on('checkin', (data) => {
-      this.navCtrl.pop();
-      })
+    //this.socket.on('checkin', (data) => {
+
+    //  })
   }
 }
