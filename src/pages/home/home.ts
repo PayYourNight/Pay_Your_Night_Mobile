@@ -33,9 +33,7 @@ export class HomePage {
     private navCtrl: NavController) {
 
     var u: any = localStorage.getItem("user");
-
-    this.usuario = JSON.parse(u);
-        
+    this.usuario = JSON.parse(u);        
     this.verificarCheckin();
 
     this.socket.on("checkin", (data) => {

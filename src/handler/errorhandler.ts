@@ -11,7 +11,7 @@ export class MyErrorHandler extends IonicErrorHandler implements ErrorHandler {
   }
 
   handleError(err: any): void {
-    console.log('Error: ' + JSON.stringify(err));
+    console.log('Error: ' + err);
     Sentry.captureException(err);
     //super.handleError(err);
     this.presentToast();
