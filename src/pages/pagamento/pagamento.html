@@ -11,13 +11,11 @@
   <button ion-button color="secondary" (click)="scanCode()" block>Incluir Consumo</button>
   <button ion-button color="primary" block>Incluir Consumo Mock</button>
   <ion-list>
-    <ion-item *ngFor="let item of consumos">
-      <ion-label>
-        <h1>{{ item.usuario }}</h1>
-      </ion-label>
+    <ion-item *ngFor="let item of consumos">      
+      <h1>{{ item.usuario }}</h1>      
       <ion-badge>R$ {{ item.total | number:'1.2-5' }}</ion-badge>
       <button ion-button outline item-end (click)="removerConsumo()">
-        <ion-icon name="remove"></ion-icon>
+        <!--<ion-icon name="remove"></ion-icon>-->
         Remover
       </button>
     </ion-item>
