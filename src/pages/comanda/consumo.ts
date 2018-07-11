@@ -19,7 +19,7 @@ export class TabConsumoContentPage {
   loading: any;
   arrConsumo: any = null;
   total: string;
-  saldoPontuacao: number;
+  saldoPontuacao: any;
   //TODO
   estabelecimento_nome: string = "Bar do Zé das Couves";
 
@@ -35,7 +35,11 @@ export class TabConsumoContentPage {
 
     this.usuario = JSON.parse(localStorage.getItem("user"));
 
-    this.saldoPontuacao = this.saldoService.getSaldo();
+    this.saldoService.getSaldo().subscribe((data) => {
+      if (data) {
+        this.saldoPontuacao = data.totalPontuacao.toFixed(2);
+      }
+    });
 
     this.loading = this.loadingCtrl.create({ spinner: 'dots' });
 

@@ -3,21 +3,23 @@
         <ion-title>
             Pagamento
         </ion-title>
-        <div class="saldo">PYNs {{ saldoPontuacao }}</div>
+        <div class="saldo">PYNs ${{ saldoPontuacao | number }}</div>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
 
   <button ion-button color="secondary" (click)="scanCode()" block>Incluir Consumo</button>
-  <button ion-button color="primary" block>Incluir Consumo Mock</button>
+  <!--<button ion-button color="primary" block>Incluir Consumo Mock</button>-->
   <ion-list>
     <ion-item *ngFor="let item of consumos">      
       <h1>{{ item.usuario }}</h1>      
-      <ion-badge>R$ {{ item.total | number:'1.2-5' }}</ion-badge>
-      <button ion-button outline item-end (click)="removerConsumo()">
-        <!--<ion-icon name="remove"></ion-icon>-->
-        Remover
-      </button>
+      <ion-badge>R$ {{ item.total | number }}</ion-badge>
+      <div *ngIf="item.usuario != 'Meu Consumo'" >
+        <button ion-button outline item-end (click)="removerConsumo()">
+          <!--<ion-icon name="remove"></ion-icon>-->
+          Remover
+        </button>
+      </div>
     </ion-item>
   </ion-list>
 
@@ -40,16 +42,16 @@
 </ion-content>    
 <ion-footer>
    <ion-item *ngIf="pagarPYNCoin">
-     <h3><ion-badge>{{ totalPagar }}</ion-badge> - <ion-badge>{{ totalPontos }}</ion-badge> = Total à Pagar <ion-badge>{{ totalPagar - totalPontos }}</ion-badge></h3>
+     <h3><ion-badge>{{ totalPagar | number }}</ion-badge> - <ion-badge>{{ saldoPontuacao | number }}</ion-badge> = Total a Pagar <ion-badge>{{ valortotalpagamento | number }}</ion-badge></h3>
    </ion-item>
     <ion-item>
         <ion-label>Utilizar PYN Coins*</ion-label>
-        <ion-toggle checked="false" [(ngModel)]="pagarPYNCoin"></ion-toggle>
+        <ion-toggle checked="false" [(ngModel)]="pagarPYNCoin" (ionChange)="doCalc()"></ion-toggle>
     </ion-item>
     <ion-item>
         <ion-label>Meio de Pagamento</ion-label>
         <ion-select [(ngModel)]="meioPagamento">
-            <ion-option *ngFor="let item of meiospagamento" value={{ item._id }}>{{ item.numero | slice:12:4}}</ion-option>
+            <ion-option *ngFor="let item of meiospagamento" value={{ item._id }}>{{ item.numero | slice:12:4 }}</ion-option>
         </ion-select> 
     </ion-item>                           
     <button ion-button block (click)="pagar()">Pagar</button>          

@@ -23,7 +23,7 @@ export class PagamentoProvider {
     }
 
     return this.http
-      .post(this.globals.baseUrl + '/api/pagamentos', JSON.stringify(body));
+      .post(this.globals.baseUrl + '/api/pagamentos', body);
   }
 
   incluirConsumo(usuarioid) {

@@ -3,13 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Socket } from 'ng-socket-io';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { HomePage } from '../home/home';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
-/**
- * Generated class for the ConfirmacaoPagamentoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,8 +20,11 @@ export class ConfirmacaoPagamentoPage {
     private alertCtrl: AlertController,
     private socket: Socket) {
 
-    var value = navParams.get('userid');
-    this.createdCode = value;
+    var user: any = JSON.parse(localStorage.getItem("user"));
+
+    this.createdCode = user._id;
+
+    console.log(user);
 
     this.socket.on("checkout", (data) => {
       this.presentAlert();

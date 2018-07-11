@@ -39,6 +39,7 @@ import { SaldoService } from '../services/saldo-service';
 import { MeioPagamentoProvider } from '../provider/meiopagamento';
 import { GlobalsProvider } from '../provider/globals';
 import { PagamentoProvider } from '../provider/pagamento';
+import { ConfirmacaoPagamentoPage } from '../pages/confirmacao-pagamento/confirmacao-pagamento';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -68,6 +69,7 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     BarcodePage,
     TabIconPage,
     TabIconContentPage,
+    ConfirmacaoPagamentoPage
   ],
   imports: [
     BrowserModule,
@@ -97,6 +99,7 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     BarcodePage,
     TabIconPage,
     TabIconContentPage,
+    ConfirmacaoPagamentoPage
   ],
   providers: [
     StatusBar,

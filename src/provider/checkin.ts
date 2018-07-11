@@ -17,8 +17,7 @@ export class CheckinProvider {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.token = JSON.parse(localStorage.getItem("token"));
   }
-
-  //TODO
+  
   verificar() {
     console.log('realizando verificação de checkin');
     const httpOptions = {
@@ -28,6 +27,18 @@ export class CheckinProvider {
       })
     };
 
-    return this.http.get(this.globals.baseUrl + this.apiUrl + "/?usuarioid=" + this.user._id, httpOptions);
+    return this.http.get(this.globals.baseUrl + "/api/checkin/ativo/?usuarioid=" + this.user._id, httpOptions);
+  }
+
+  verificarAguardando() {
+    console.log('realizando verificação de checkin');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': JSON.stringify(this.token || {})
+      })
+    };
+
+    return this.http.get(this.globals.baseUrl + "/api/checkin/confirmacao/?usuarioid=" + this.user._id, httpOptions);
   }
 }

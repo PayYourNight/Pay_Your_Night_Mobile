@@ -15,6 +15,7 @@ import { Socket } from 'ng-socket-io';
 import { CheckinProvider } from '../../provider/checkin';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { AguardandoPagamentoPage } from '../aguardando-pagamento/aguardando-pagamento';
+import { ConfirmacaoPagamentoPage } from '../confirmacao-pagamento/confirmacao-pagamento';
 
 @Component({
   selector: 'page-home',
@@ -54,18 +55,23 @@ export class HomePage {
 
   verificarCheckin() {
     this.checkin.verificar()
-      .subscribe((data) => {
-        this.resCheckin = data;
+      .subscribe((data) => {        
         if (data) {
+          this.resCheckin = data;
           if (this.resCheckin.consumo_transferido) {
             this.navCtrl.setRoot(AguardandoPagamentoPage);
           } else {
             this.openComanda();
           }
-        }
+        } 
       },
       (error) => {
-        throw new Error(error);
+        this.checkin.verificarAguardando()
+          .subscribe((data) => {
+            if (data) {
+              this.navCtrl.setRoot(ConfirmacaoPagamentoPage);
+            }
+          });
       });
   }
 

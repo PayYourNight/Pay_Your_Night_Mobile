@@ -5,6 +5,8 @@ import { MeioPagamentoProvider } from '../../provider/meiopagamento';
 import { PagamentoProvider } from '../../provider/pagamento';
 import { ConfirmacaoPagamentoPage } from '../confirmacao-pagamento/confirmacao-pagamento';
 import { Socket } from 'ng-socket-io';
+import { SaldoService } from '../../services/saldo-service';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 
 @Component({
@@ -19,8 +21,9 @@ export class PagamentoPage {
   total: any = 0;
   consumos: any = [];
   pagarPYNCoin: boolean;
-  totalPagar: number;
-  totalPontos: number;
+  totalPagar: number;  
+  saldoPontuacao: number;
+  valortotalpagamento: number;
 
   constructor(
     public navCtrl: NavController,
@@ -28,10 +31,17 @@ export class PagamentoPage {
     private barcodeScanner: BarcodeScanner,
     private mp: MeioPagamentoProvider,
     private pagamento: PagamentoProvider,
-    private socket: Socket) {
+    private socket: Socket,
+    private saldoService: SaldoService,
+    private alertCtrl: AlertController) {
+    
+    this.saldoService.getSaldo().subscribe((data) => {
+      if (data) {
+        this.saldoPontuacao = data.totalPontuacao;
+      }
+    });
 
-    this.totalPagar = 0;
-    this.totalPontos = 0;
+    this.totalPagar = 0;    
     this.total = navParams.get("total");
     this.meiospagamento = this.getMeiosPagamento();
 
@@ -39,6 +49,8 @@ export class PagamentoPage {
       usuario: "Meu Consumo",
       total: this.total
     });
+
+    this.doCalc();
   }
 
   getMeiosPagamento(): any {
@@ -49,14 +61,25 @@ export class PagamentoPage {
 
   scanCode() {
     this.barcodeScanner.scan().then((barcodeData) => {
-      var code: any = barcodeData;
-      var split: Array<string> = code.split("|");
-      this.user_id = split[0];
-      this.incluirConsumo();
-
+      if (barcodeData) {
+        var code: any = barcodeData;
+        var split: Array<string> = code.split("|");
+        this.user_id = split[0];
+        this.incluirConsumo();
+        this.doCalc();
+      }
     }, (err) => {
       throw new Error(err);
     });
+  }
+
+  doCalc() {
+    var soma: number = 0;
+    this.consumos.forEach(function (item) {
+      soma += item.total;
+    });
+    this.totalPagar = soma;
+    this.valortotalpagamento = this.totalPagar - this.saldoPontuacao;
   }
 
   incluirConsumo(): void {
@@ -76,8 +99,7 @@ export class PagamentoPage {
       .subscribe(
       (data) => {
         if (data) {
-          this.confirmarPagamento();
-          this.emitirSocketPagamentorealizado();
+          this.presentAlert();
         }
       },
       (error) => {
@@ -98,6 +120,23 @@ export class PagamentoPage {
         _id: this.user_id
       }
     });
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirmação de Pagamento',
+      subTitle: 'Você já pode se dirigir a saída.',
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'Ok',
+          handler: () => {
+            this.confirmarPagamento();
+            this.emitirSocketPagamentorealizado();
+          }
+        }]
+    });
+    alert.present();
   }
 
 }
