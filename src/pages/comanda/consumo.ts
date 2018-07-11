@@ -37,7 +37,8 @@ export class TabConsumoContentPage {
 
     this.saldoService.getSaldo().subscribe((data) => {
       if (data) {
-        this.saldoPontuacao = data.totalPontuacao.toFixed(2);
+        var value:any = data
+        this.saldoPontuacao = value.totalPontuacao.toFixed(2);
       }
     });
 

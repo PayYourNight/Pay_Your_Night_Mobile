@@ -9,9 +9,9 @@
 <ion-content>
   <button ion-button>Novo</button>
   <ion-list>
-    <ion-item *ngFor="let item of meiospagamento">
+    <button ion-item *ngFor="let item of meiospagamento">
       <pre>{{item}}</pre>
       <i class="fab fa-cc-mastercard"></i><ion-label>...{{item.cart_numero | slice:12:4}}</ion-label>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>

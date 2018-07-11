@@ -37,7 +37,8 @@ export class PagamentoPage {
     
     this.saldoService.getSaldo().subscribe((data) => {
       if (data) {
-        this.saldoPontuacao = data.totalPontuacao;
+        var value: any = data;
+        this.saldoPontuacao = value.totalPontuacao;
       }
     });
 

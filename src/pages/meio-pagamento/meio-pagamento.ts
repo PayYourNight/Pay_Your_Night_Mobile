@@ -3,7 +3,7 @@ import { MeioPagamentoProvider } from '../../provider/meiopagamento';
 
 @Component({
   selector: 'page-meios-pagamento',
-  templateUrl: 'meiosPagamento.html'
+  templateUrl: 'meio-pagamento.html'
 })
 export class MeioPagamentoPage {
   meiospagamento: any;
