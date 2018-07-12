@@ -16,6 +16,7 @@ import { CheckinProvider } from '../../provider/checkin';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { AguardandoPagamentoPage } from '../aguardando-pagamento/aguardando-pagamento';
 import { ConfirmacaoPagamentoPage } from '../confirmacao-pagamento/confirmacao-pagamento';
+import { SaldoService } from '../../services/saldo-service';
 
 @Component({
   selector: 'page-home',
@@ -24,6 +25,7 @@ import { ConfirmacaoPagamentoPage } from '../confirmacao-pagamento/confirmacao-p
 export class HomePage {
   resCheckin: any;
   usuario: any;
+  saldoPontuacao: number = 0;
 
   constructor(
     private modalCtrl: ModalController, 
@@ -31,7 +33,8 @@ export class HomePage {
     private events: Events,
     private alertCtrl: AlertController,
     private checkin: CheckinProvider,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,
+    private saldoService: SaldoService) {
 
     var u: any = localStorage.getItem("user");
     this.usuario = JSON.parse(u);        
@@ -50,6 +53,13 @@ export class HomePage {
 
     events.subscribe('checkin:started', (user, time) => {     
       this.openComanda();
+    });
+
+    this.saldoService.getSaldo().subscribe((data) => {
+      if (data) {
+        var value: any = data;
+        this.saldoPontuacao = value.totalPontuacao;
+      }
     });
   }
 

@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { LoadingService } from '../../services/loading-service';
 import { ToastService } from '../../services/toast-service';
 import { UsuarioProvider } from '../../provider/usuario';
+import { HomePage } from '../home/home';
+import { LoginProvider } from '../../provider/login';
 
 @Component({
     selector: 'page-signup',
@@ -31,18 +33,20 @@ export class SignupPage {
     private loadingService: LoadingService,
     private toastCtrl: ToastService,
     private usuario: UsuarioProvider,
-    private navCtr: NavController) {
+    private navCtr: NavController,
+    public login: LoginProvider,
+    public navCtrl: NavController) {
 
     this.data = {
-      "toolbarTitle": "Register + logo",
+      "toolbarTitle": "Registrar",
       "logo": "assets/images/logo/2.png",
-      "register": "register",
-      "title": "Register your new account",
-      "username": "Enter your username",
+      "register": "Registrar",
+      "title": "Registre sua nova conta",
+      "username": "Digite seu nomes",
       "city": "Your home town",
       "country": "Where are you from?",
-      "password": "Enter your password",
-      "email": "Your e-mail address",
+      "password": "Digite sua senha",
+      "email": "Seu endereço de e-mail",
       "skip": "Skip",
       "lableUsername": "USERNAME",
       "lablePassword": "PASSWORD",
@@ -66,13 +70,33 @@ export class SignupPage {
         password: this.password
       }).subscribe(
         (data) => {
-        this.loadingService.hide();
+
+          this.login.signin(this.username, this.password)
+            .subscribe((data) => {
+              this.setStorage(data);
+              this.setPages();
+            }, error => {
+
+            });
+
+          this.loadingService.hide();
+       
+
         this.navCtr.pop();
         },
         (error) => {
           throw new Error(error);
         });
     }
+  }
+
+  setPages(): any {
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  setStorage(data: any): any {
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', JSON.stringify(data.user.loginToken));
   }
 
   onSkip(params) {
@@ -83,8 +107,6 @@ export class SignupPage {
     this.isEmailValid = true;
     this.isUsernameValid = true;
     this.isPasswordValid = true;
-    this.isCityValid = true;
-    this.isCountryValid = true;
 
     if (!this.username || this.username.length == 0) {
       this.isUsernameValid = false;
@@ -92,18 +114,6 @@ export class SignupPage {
 
     if (!this.password || this.password.length == 0) {
       this.isPasswordValid = false;
-    }
-
-    if (!this.password || this.password.length == 0) {
-      this.isPasswordValid = false;
-    }
-
-    if (!this.city || this.city.length == 0) {
-      this.isCityValid = false;
-    }
-
-    if (!this.country || this.country.length == 0) {
-      this.isCountryValid = false;
     }
 
     this.isEmailValid = this.regex.test(this.email);

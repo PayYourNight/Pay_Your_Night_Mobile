@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><h1>Histórico</h1></ion-title>
+    <ion-title><h1>Detalhe</h1></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -16,8 +16,8 @@
       </ion-item-divider>
       <ion-item *ngFor="let produto of item.produtosConsumo">
         <ion-item>
-          <h3>{{ item.produto_descricao }}</h3>
-          <h5>{{ item.quantidade }} x {{ produto_valor }}</h5>
+          <h3>{{ produto.produto_descricao }}</h3>
+          <h5>{{ produto.quantidade }} x {{ produto.produto_valor }}</h5>
         </ion-item>
       </ion-item>
     </ion-item-group>

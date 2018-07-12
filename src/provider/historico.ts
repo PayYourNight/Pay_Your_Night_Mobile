@@ -16,11 +16,12 @@ export class HistoricoProvider {
 
   getHistorico() {
     return this.http
-      .get(this.globals.baseUrl + '/api/users/consumo/historico/?usuarioid=' + this.user._id);
+      .get(this.globals.baseUrl + '/api/consumo/historico/?usuarioid=' + this.user._id);
   }
 
   getDetalhe(checkinid) {
+    console.log(checkinid);
     return this.http
-      .get(this.globals.baseUrl + '/api/users/consumo/historico/detalhe/?checkinid=' + checkinid);
+      .get(this.globals.baseUrl + '/api/consumo/historico/detalhe/?checkinid=' + checkinid);
   }
 }

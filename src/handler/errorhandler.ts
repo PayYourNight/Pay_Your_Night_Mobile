@@ -11,7 +11,8 @@ export class MyErrorHandler extends IonicErrorHandler implements ErrorHandler {
   }
 
   handleError(err: any): void {
-    if (err.status != 412) {
+    console.log(err.status);
+    if (err.status != 412 && err.status != 404) {
       console.log('Error: ' + err.message);
       Sentry.captureException(err);
       //super.handleError(err);

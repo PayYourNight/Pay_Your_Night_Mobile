@@ -3,6 +3,14 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Pontuação</ion-title>
+      <ion-title><h1>Pontuação</h1></ion-title>
     </ion-navbar>
   </ion-header>
+<ion-list>
+  <ion-list-header>
+    {{ total }}
+  </ion-list-header>
+  <ion-item *ngFor="let item of saldos">
+    {{ item.tipoMovimentacao }} - {{ item.valorMovimentado }}
+  </ion-item>
+</ion-list>
