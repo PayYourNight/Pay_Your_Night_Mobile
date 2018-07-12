@@ -40,6 +40,7 @@ import { MeioPagamentoProvider } from '../provider/meiopagamento';
 import { GlobalsProvider } from '../provider/globals';
 import { PagamentoProvider } from '../provider/pagamento';
 import { ConfirmacaoPagamentoPage } from '../pages/confirmacao-pagamento/confirmacao-pagamento';
+import { UsuarioProvider } from '../provider/usuario';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -114,7 +115,8 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     SaldoService,
     MeioPagamentoProvider,
     GlobalsProvider,
-    PagamentoProvider
+    PagamentoProvider,
+    UsuarioProvider
   ]
 })
 export class AppModule {}

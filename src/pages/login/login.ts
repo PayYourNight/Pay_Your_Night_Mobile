@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginProvider } from '../../provider/login';
+import { SignupPage } from '../signup/signup';
 
 @Component({
   selector: 'page-login',
@@ -89,7 +90,7 @@ export class LoginPage {
   }
 
   onRegister() {
-
+    this.navCtrl.push(SignupPage);
   }
 
   onSkip() {

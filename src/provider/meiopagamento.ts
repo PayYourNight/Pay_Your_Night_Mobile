@@ -19,7 +19,8 @@ export class MeioPagamentoProvider {
       .get(this.globals.baseUrl + '/api/users/meiopagamento/?usuarioid=' + this.user._id);
   }
 
-  getMeioPagamento() {
-
+  addMeioPagamento(meiopagamento) {
+    return this.http
+      .post(this.globals.baseUrl + '/api/users/meiopagamento', meiopagamento);
   }
 }

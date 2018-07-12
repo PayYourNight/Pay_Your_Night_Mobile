@@ -6,12 +6,14 @@
     <ion-title>Meios de Pagamento</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
-  <button ion-button>Novo</button>
+<ion-content>  
   <ion-list>
+    <button ion-item>
+      NOVO
+    </button>
     <button ion-item *ngFor="let item of meiospagamento">
-      <pre>{{item}}</pre>
-      <i class="fab fa-cc-mastercard"></i><ion-label>...{{item.cart_numero | slice:12:4}}</ion-label>
+      <pre>{{ item }}</pre>
+      <i class="fab fa-cc-mastercard"></i><ion-label>...{{ item.cart_numero | slice:12:4 }}</ion-label>
     </button>
   </ion-list>
 </ion-content>
