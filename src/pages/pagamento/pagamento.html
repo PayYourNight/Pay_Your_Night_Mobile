@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-          <h1>Pagamento</h1>
+          <h3>Pagamento</h3>
         </ion-title>
         <div class="saldo">PYNs ${{ saldoPontuacao | number:'1.2-2' }}</div>
     </ion-navbar>
@@ -11,7 +11,7 @@
   
   <!--<button ion-button color="primary" block>Incluir Consumo Mock</button>-->
   <ion-list>
-    <button ion-item color="secondary" (click)="scanCode()" color="primary">Incluir Consumo</button>
+    <button ion-item color="secondary" (click)="scanCode()" color="primary">INCLUIR CONSUMO</button>
     <ion-item *ngFor="let item of consumos">
       <h1>{{ item.usuario }}</h1>
       <ion-badge>R$ {{ item.total | number }}</ion-badge>
