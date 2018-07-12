@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { MeioPagamentoProvider } from '../../../provider/meiopagamento';
 import { ToastService } from '../../../services/toast-service';
 import { LoadingService } from '../../../services/loading-service';
+import { MeioPagamentoProvider } from '../../../provider/meiopagamento';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-novo-meio-pagamento',
@@ -22,12 +24,14 @@ export class NovoMeioPagamentoPage {
   constructor(
     private meiopagamento: MeioPagamentoProvider,
     private toast: ToastService,
-    private loading: LoadingService) { }
+    private loading: LoadingService,
+    private navCtr: NavController,
+    public events: Events) { }
 
 
   cadastrar() {
     this.loading.show();
-    this.meiopagamento.addMeioPagamento({
+    this.meiopagamento.addMeioPagamento({      
       cart_numero: this.cart_numero,
       cart_data_val: this.cart_data_val,
       cart_bandeira: this.cart_bandeira,
@@ -37,6 +41,8 @@ export class NovoMeioPagamentoPage {
 
         if (data) {
           this.toast.presentToast("Meio da pagamento incluído com sucesso!");
+          this.events.publish('cart:created');
+          this.navCtr.pop();
         }
 
       },

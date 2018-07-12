@@ -8,6 +8,7 @@ import { Socket } from 'ng-socket-io';
 import { SaldoService } from '../../services/saldo-service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingService } from '../../services/loading-service';
+import { ToastService } from '../../services/toast-service';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class PagamentoPage {
     private socket: Socket,
     private saldoService: SaldoService,
     private alertCtrl: AlertController,
-    private loading: LoadingService) {
+    private loading: LoadingService,
+    private toast: ToastService) {
     
     this.saldoService.getSaldo().subscribe((data) => {
       if (data) {
@@ -98,6 +100,14 @@ export class PagamentoPage {
   }
 
   pagar() {
+
+    if (!this.meioPagamento) {
+
+      this.toast.presentToast("É necessario selecionar um meio de pagamento");
+
+      return;
+    }
+
     this.loading.show();
     this.pagamento.pagar(this.meioPagamento, this.pagarPYNCoin)
       .subscribe(
@@ -112,6 +122,7 @@ export class PagamentoPage {
       });
     this.loading.hide();
   }
+
 
   confirmarPagamento(): any {
     this.navCtrl.setRoot(ConfirmacaoPagamentoPage, { userid: this.user_id });

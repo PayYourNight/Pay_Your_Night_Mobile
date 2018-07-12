@@ -32,12 +32,20 @@ export class MenuService implements IService {
       ];
     };
 
-    getDataForTheme = () => {
+  getDataForTheme = () => {
+
+    var usuario: any = localStorage.getItem("user");
+    if (usuario) {
+      usuario = JSON.parse(usuario);
+      console.log(usuario.displayName);
+      usuario.displayName;
+    }
       return {
         "background": "assets/images/background/1.jpg",
         "image": "assets/images/logo/1.png",
         "title": "Pay Your Night",
-        "description": "Por um mundo mais conectado e divertido!"
+        "description": "Por um mundo mais conectado e divertido!",
+        "usuario": usuario.displayName
       };
     };
 

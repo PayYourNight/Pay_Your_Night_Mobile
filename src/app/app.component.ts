@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { PerfilPage } from '../pages/perfil/perfil';
-//import { MeiosPagamentoPage } from '../pages/meiospagamento/meiosPagamento';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 import { HistoricoPage } from '../pages/historico/historico';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
@@ -16,7 +15,6 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { IconPage as TabIconPage, TabIconContentPage } from '../pages/abas/abas';
-//import { ComandaPage } from '../pages/comanda/comanda';
 import { TabConsumoContentPage  } from '../pages/comanda/consumo';
 import { TabBuscaProdutosContentPage } from '../pages/comanda/produtos';
 import { TabQrcodeConsumoContentPage } from '../pages/comanda/qrcode';
@@ -28,6 +26,7 @@ import { IService } from '../services/IService';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  usuario: string;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
@@ -49,6 +48,8 @@ export class MyApp {
     this.menuService.load(null).subscribe(snapshot => {
       this.params = snapshot;
     });
+
+
   }
 
   initializeApp() {

@@ -3,11 +3,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><h1>Adicionar Meios de Pagamentos</h1></ion-title>
+    <ion-title><h1>Adicionar</h1></ion-title>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-title>Meio de Pagamento</ion-title>
-  </ion-toolbar>
 </ion-header>
 <ion-content padding>
   <ion-row>
@@ -39,6 +36,7 @@
         <ion-input required type="numero" placeholder="Validade" [(ngModel)]="cart_cod_seg"></ion-input>
         <ion-label error-field color="primary" no-margin *ngIf="!isCodigoValid">Código de Segurança não pode ser nulo.</ion-label>
       </ion-item>
+      <button ion-item color="primary" (click)="cadastrar()">SALVAR</button>
     </ion-col>
   </ion-row>
 </ion-content>

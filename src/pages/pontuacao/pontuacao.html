@@ -6,11 +6,15 @@
       <ion-title><h1>Pontuação</h1></ion-title>
     </ion-navbar>
   </ion-header>
-<ion-list>
-  <ion-list-header>
-    {{ total }}
-  </ion-list-header>
-  <ion-item *ngFor="let item of saldos">
-    {{ item.tipoMovimentacao }} - {{ item.valorMovimentado }}
-  </ion-item>
+<ion-content padding>
+  <ion-list>
+    <ion-item-divider>
+      <ion-list-header>
+        TOTAL {{ total | number:'1.2-2' }}
+      </ion-list-header>
+      <ion-item *ngFor="let item of saldos">
+        {{ item.created | date }}  {{ item.tipoMovimentacao | number:'1.2-2' }} - {{ item.valorMovimentado | number:'1.2-2'}}
+      </ion-item>
+      </ion-item-divider>
 </ion-list>
+</ion-content>

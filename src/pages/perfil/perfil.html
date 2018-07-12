@@ -6,5 +6,20 @@
       <ion-title>Perfil</ion-title>
     </ion-navbar>
   </ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <h1>{{ user.displayName }}</h1>
+    </ion-list-header>
+    <ion-item>
+      <p>EMAIL</p>
+      {{ user.email }}
+    </ion-item>
+    <ion-item>
+      <p>NOME DE USUÁRIO</p>
+      {{ user.username }}
+    </ion-item>
+    <button ion-item color="primary">ALTERAR</button>
+  </ion-list>
+</ion-content>
 
-  

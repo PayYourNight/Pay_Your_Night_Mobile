@@ -5,6 +5,8 @@
         <img [src]="params.image">
         <h2 ion-text header-title>{{params.title}}</h2>
         <p>{{params.description}}</p>
+        <br />
+        <p ion-text>{{ params.usuario }}</p>                        
       </div>
     </ion-header>
     <!-- Menu Main List -->
@@ -14,7 +16,7 @@
           <ion-icon icon-small item-left>
             <i class="icon {{p.icon}}"></i>
           </ion-icon>
-          {{p.title}}
+          {{p.title}}          
         </button>
       </ion-list>
     </ion-content>

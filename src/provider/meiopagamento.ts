@@ -20,6 +20,7 @@ export class MeioPagamentoProvider {
   }
 
   addMeioPagamento(meiopagamento) {
+    meiopagamento["usuario_id"] = this.user._id;
     return this.http
       .post(this.globals.baseUrl + '/api/users/meiopagamento', meiopagamento);
   }

@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Meios de Pagamento</ion-title>
+    <ion-title><h1>Meios de Pagamento</h1></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>  
@@ -11,8 +11,12 @@
     <button ion-item color="primary"  (click)="novo()">
       NOVO
     </button>
-    <button ion-item *ngFor="let item of meiospagamento">      
-      <i class="fab fa-cc-mastercard"></i><ion-label>...{{ item.cart_numero | slice:12:4 }}</ion-label>
-    </button>
+    <ion-item *ngFor="let item of meiospagamento">
+      <ion-icon icon-small item-left>
+        <i class="fab fa-cc-mastercard"></i>
+      </ion-icon>
+      ...{{ item.cart_numero | slice:0:4 }}
+      <button ion-button outline item-end (click)="buttonClick()">Remover</button>      
+    </ion-item>
   </ion-list>
 </ion-content>

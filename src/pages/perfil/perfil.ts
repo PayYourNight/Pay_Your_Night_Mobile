@@ -5,7 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: 'perfil.html'
 })
 export class PerfilPage {
+  user: any;
 
-  constructor() {}
+  constructor() {
+
+    this.user = JSON.parse(localStorage.getItem("user"));
+
+    console.log(this.user);
+
+  }
   
 }

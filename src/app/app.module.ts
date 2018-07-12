@@ -36,7 +36,6 @@ import { LoadingService } from '../services/loading-service';
 import { LoginProvider } from '../provider/login';
 import { MyErrorHandler } from '../handler/errorhandler';
 import { SaldoService } from '../services/saldo-service';
-import { MeioPagamentoProvider } from '../provider/meiopagamento';
 import { GlobalsProvider } from '../provider/globals';
 import { PagamentoProvider } from '../provider/pagamento';
 import { ConfirmacaoPagamentoPage } from '../pages/confirmacao-pagamento/confirmacao-pagamento';
@@ -47,6 +46,7 @@ import { ToastService } from '../services/toast-service';
 import { PontuacaoProvider } from '../provider/pontuacao';
 import { MeioPagamentoPage } from '../pages/meio-pagamento/meio-pagamento';
 import { NovoMeioPagamentoPage } from '../pages/meio-pagamento/novo/novo-meio-pagamento';
+import { MeioPagamentoProvider } from '../provider/meiopagamento';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -111,7 +111,8 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     TabIconContentPage,
     ConfirmacaoPagamentoPage,
     DetalheHistoricoPage,
-    MeioPagamentoPage
+    MeioPagamentoPage,
+    NovoMeioPagamentoPage
   ],
   providers: [
     StatusBar,
@@ -123,15 +124,14 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     MenuService,
     LoadingService,
     LoginProvider,
-    SaldoService,
-    MeioPagamentoProvider,
+    SaldoService,    
     GlobalsProvider,
     PagamentoProvider,
     UsuarioProvider,
     HistoricoProvider,
     ToastService,
     PontuacaoProvider,
-    NovoMeioPagamentoPage
+    MeioPagamentoProvider
   ]
 })
 export class AppModule {}
