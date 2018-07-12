@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><h1>Histórico</h1></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item-group *ngFor="let item of consumos">
+      <ion-item-divider sticky>
+        <ion-label>
+          <h1>{{ item.created | date:'HH:mm' }}</h1>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let produto of item.produtosConsumo">
+        <ion-item>
+          <h3>{{ item.produto_descricao }}</h3>
+          <h5>{{ item.quantidade }} x {{ produto_valor }}</h5>
+        </ion-item>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

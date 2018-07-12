@@ -3,6 +3,21 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Histórico</ion-title>
+      <ion-title><h1>Histórico</h1></ion-title>
     </ion-navbar>
-  </ion-header>
+ </ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row *ngFor="let item of consumos" padding-horizontal align-items-start>
+      <a ion-item (click)="detalhe(item)">
+        <ion-col col-3 no-padding>
+          <h1>{{ consumo_dia }}</h1><h4>{{ consumo_mes }}</h4>
+        </ion-col>
+        <ion-col col-9 no-padding>
+          <h2>{{ estabelecimento_nome }}</h2>
+          <h5>{{ total_consumo  }} </h5>
+        </ion-col>
+      </a>
+    </ion-row>
+  </ion-grid>
+</ion-content>
