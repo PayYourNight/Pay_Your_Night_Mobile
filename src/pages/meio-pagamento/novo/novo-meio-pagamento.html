@@ -36,7 +36,6 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>Código</ion-label>
-
         <ion-input required type="numero" placeholder="Validade" [(ngModel)]="cart_cod_seg"></ion-input>
         <ion-label error-field color="primary" no-margin *ngIf="!isCodigoValid">Código de Segurança não pode ser nulo.</ion-label>
       </ion-item>

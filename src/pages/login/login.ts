@@ -3,6 +3,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginProvider } from '../../provider/login';
 import { SignupPage } from '../signup/signup';
+import { LoadingService } from '../../services/loading-service';
 
 @Component({
   selector: 'page-login',
@@ -21,7 +22,8 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public login: LoginProvider,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private loading: LoadingService) {
 
     if (localStorage.getItem("user")) {
       this.navCtrl.setRoot(HomePage);
@@ -50,20 +52,23 @@ export class LoginPage {
 
   onLogin() {
     if (this.validate()) {
+      this.loading.show();
       this.login.signin(this.username, this.password)
         .subscribe((data) => {
           this.setStorage(data);
           this.setPages();
+          this.loading.hide();
         }, error => {
-          console.log(error.error.message);
+          this.loading.hide();
           if (error.error.message == "User not found" || error.error.message == "Wrong Password") {
             this.presentToast("Login ou senha inválidos.");
           } else {
             this.presentToast("Desculpe, alguma coisa saiu errada :(")
           }
         });
-
     }
+
+    this.loading.hide();
   }
 
   presentToast(msg) {

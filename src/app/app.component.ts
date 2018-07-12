@@ -49,8 +49,6 @@ export class MyApp {
     this.menuService.load(null).subscribe(snapshot => {
       this.params = snapshot;
     });
-
-
   }
 
   initializeApp() {

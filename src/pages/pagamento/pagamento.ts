@@ -7,6 +7,7 @@ import { ConfirmacaoPagamentoPage } from '../confirmacao-pagamento/confirmacao-p
 import { Socket } from 'ng-socket-io';
 import { SaldoService } from '../../services/saldo-service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { LoadingService } from '../../services/loading-service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class PagamentoPage {
     private pagamento: PagamentoProvider,
     private socket: Socket,
     private saldoService: SaldoService,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private loading: LoadingService) {
     
     this.saldoService.getSaldo().subscribe((data) => {
       if (data) {
@@ -96,6 +98,7 @@ export class PagamentoPage {
   }
 
   pagar() {
+    this.loading.show();
     this.pagamento.pagar(this.meioPagamento, this.pagarPYNCoin)
       .subscribe(
       (data) => {
@@ -104,8 +107,10 @@ export class PagamentoPage {
         }
       },
       (error) => {
+        this.loading.hide();
         throw new Error(error);
       });
+    this.loading.hide();
   }
 
   confirmarPagamento(): any {

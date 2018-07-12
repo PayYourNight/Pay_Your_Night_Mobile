@@ -8,11 +8,10 @@
 </ion-header>
 <ion-content>  
   <ion-list>
-    <button ion-item>
+    <button ion-item color="primary"  (click)="novo()">
       NOVO
     </button>
-    <button ion-item *ngFor="let item of meiospagamento">
-      <pre>{{ item }}</pre>
+    <button ion-item *ngFor="let item of meiospagamento">      
       <i class="fab fa-cc-mastercard"></i><ion-label>...{{ item.cart_numero | slice:12:4 }}</ion-label>
     </button>
   </ion-list>

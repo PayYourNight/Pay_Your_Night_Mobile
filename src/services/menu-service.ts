@@ -10,6 +10,7 @@ import { HistoricoPage } from '../pages/historico/historico';
 import { PontuacaoPage } from '../pages/pontuacao/pontuacao';
 //import { MeiosPagamentoPage } from '../pages/meiosPagamento/meiosPagamento';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { MeioPagamentoPage } from '../pages/meio-pagamento/meio-pagamento';
 
 @Injectable()
 export class MenuService implements IService {
@@ -24,7 +25,7 @@ export class MenuService implements IService {
       return [
         { "title": "Home", "theme": "listViews", "icon": "icon-home", "component": HomePage, "singlePage": true },
         { "title": "Perfil", "theme": "listViews", "icon": "icon-account", "component": PerfilPage, "singlePage": true },
-        //{ "title": "Meios de Pagamento", "theme": "listViews", "icon": "icon-credit-card", "component": MeiosPagamentoPage, "singlePage": true },
+        { "title": "Meios de Pagamento", "theme": "listViews", "icon": "icon-credit-card", "component": MeioPagamentoPage, "singlePage": true },
         { "title": "Pontuação", "theme": "listViews", "icon": "icon-coin", "component": PontuacaoPage, "singlePage": true },
         { "title": "Historico", "theme": "listViews", "icon": "icon-history", "component": HistoricoPage, "singlePage": true },
         { "title": "Configurações", "theme": "listViews", "icon" : "icon-cellphone-settings", "component": ConfiguracoesPage, "singlePage": true }

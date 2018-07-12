@@ -42,7 +42,7 @@ export class NovoMeioPagamentoPage {
       },
       (error) => {
 
-
+        throw new Error(error);
 
       });
     this.loading.hide();

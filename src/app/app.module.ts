@@ -45,6 +45,8 @@ import { HistoricoProvider } from '../provider/historico';
 import { DetalheHistoricoPage } from '../pages/historico/detalhe/detalhe-historico';
 import { ToastService } from '../services/toast-service';
 import { PontuacaoProvider } from '../provider/pontuacao';
+import { MeioPagamentoPage } from '../pages/meio-pagamento/meio-pagamento';
+import { NovoMeioPagamentoPage } from '../pages/meio-pagamento/novo/novo-meio-pagamento';
 
 let config: SocketIoConfig = {
   //url: "http://10.0.2.2:3000/",'
@@ -75,7 +77,9 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     TabIconPage,
     TabIconContentPage,
     ConfirmacaoPagamentoPage,
-    DetalheHistoricoPage
+    DetalheHistoricoPage,
+    MeioPagamentoPage,
+    NovoMeioPagamentoPage
   ],
   imports: [
     BrowserModule,
@@ -106,7 +110,8 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     TabIconPage,
     TabIconContentPage,
     ConfirmacaoPagamentoPage,
-    DetalheHistoricoPage
+    DetalheHistoricoPage,
+    MeioPagamentoPage
   ],
   providers: [
     StatusBar,
@@ -125,7 +130,8 @@ Sentry.init({ dsn: 'https://f03681840bd841d3b1fa4250a16b1915@sentry.io/1237023' 
     UsuarioProvider,
     HistoricoProvider,
     ToastService,
-    PontuacaoProvider
+    PontuacaoProvider,
+    NovoMeioPagamentoPage
   ]
 })
 export class AppModule {}

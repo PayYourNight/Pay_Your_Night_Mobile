@@ -5,7 +5,7 @@ export class GlobalsProvider {
 
   constructor() { }
 
-  //baseUrl: string = "https://intense-journey-43070.herokuapp.com";
-  baseUrl: string = "http://localhost:3000"; 
+  baseUrl: string = "https://intense-journey-43070.herokuapp.com";
+  //baseUrl: string = "http://localhost:3000"; 
 
 }

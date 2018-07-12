@@ -8,13 +8,14 @@
 </ion-header>
 <ion-content padding>
 
-  <button ion-button color="secondary" (click)="scanCode()" block>Incluir Consumo</button>
+  
   <!--<button ion-button color="primary" block>Incluir Consumo Mock</button>-->
   <ion-list>
-    <ion-item *ngFor="let item of consumos">      
-      <h1>{{ item.usuario }}</h1>      
+    <button ion-item color="secondary" (click)="scanCode()" color="primary">Incluir Consumo</button>
+    <ion-item *ngFor="let item of consumos">
+      <h1>{{ item.usuario }}</h1>
       <ion-badge>R$ {{ item.total | number }}</ion-badge>
-      <div *ngIf="item.usuario != 'Meu Consumo'" >
+      <div *ngIf="item.usuario != 'Meu Consumo'">
         <button ion-button outline item-end (click)="removerConsumo()">
           <!--<ion-icon name="remove"></ion-icon>-->
           Remover
@@ -22,23 +23,6 @@
       </div>
     </ion-item>
   </ion-list>
-
-  <!--<ion-row *ngFor="let item of consumos" ion-list>
-    <ion-card>
-      <ion-card-content>
-        <ion-card-header>
-          <h1>{{item.usuario}}</h1>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              <ion-badge>R$ {{ item.total | number:'1.2-5' }}</ion-badge>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card-content>
-    </ion-card>
-  </ion-row>-->
 </ion-content>    
 <ion-footer>
    <ion-item *ngIf="pagarPYNCoin">
@@ -51,10 +35,10 @@
     <ion-item>
         <ion-label>Meio de Pagamento</ion-label>
         <ion-select [(ngModel)]="meioPagamento">
-            <ion-option *ngFor="let item of meiospagamento" value={{ item._id }}>{{ item.numero | slice:12:4 }}</ion-option>
+            <ion-option *ngFor="let item of meiospagamento" value="{{item._id}}">{{ item.numero | slice:12:4 }}</ion-option>
         </ion-select> 
     </ion-item>                           
-    <button ion-button block (click)="pagar()">Pagar</button>          
+    <button ion-item block (click)="pagar()" color="primary">Pagar</button>          
 </ion-footer>
 
 

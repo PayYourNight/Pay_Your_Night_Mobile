@@ -3,6 +3,7 @@ import { ViewController, Events, NavParams  } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Socket } from 'ng-socket-io';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { MeioPagamentoProvider } from '../../provider/meiopagamento';
  
 @Component({
   selector: 'page-barcode',
@@ -17,8 +18,16 @@ export class BarcodePage {
     private socket: Socket,
     private events: Events,
     private params: NavParams,
+    private meiopagamento: MeioPagamentoProvider,
     private navCtrl: NavController
-  ) { 
+  ) {
+
+    this.meiopagamento.getMeiosPagamento()
+      .subscribe((data) => {
+        if (!data) {
+
+        }
+      });
 
     var value = params.get('value');
     this.createdCode = value;
