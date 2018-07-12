@@ -85,6 +85,7 @@ export class SignupPage {
         this.navCtr.pop();
         },
         (error) => {
+          this.loadingService.hide();
           throw new Error(error);
         });
     }

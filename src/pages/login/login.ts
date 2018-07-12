@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { LoginProvider } from '../../provider/login';
 import { SignupPage } from '../signup/signup';
 import { LoadingService } from '../../services/loading-service';
+import { ToastService } from '../../services/toast-service';
 
 @Component({
   selector: 'page-login',
@@ -23,7 +24,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public login: LoginProvider,
     private toastCtrl: ToastController,
-    private loading: LoadingService) {
+    private loading: LoadingService,
+    private toast: ToastService) {
 
     if (localStorage.getItem("user")) {
       this.navCtrl.setRoot(HomePage);
@@ -60,6 +62,7 @@ export class LoginPage {
           this.loading.hide();
         }, error => {
           this.loading.hide();
+          this.toast.presentToast(error.error.message); 
           if (error.error.message == "User not found" || error.error.message == "Wrong Password") {
             this.presentToast("Login ou senha inválidos.");
           } else {
